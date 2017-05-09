@@ -1,0 +1,477 @@
+Michel SUSINI 18565782420
+luthans wang 13928447920
+深圳海创通科技-13725594972 Target: arm-unknown-linux-uclibcgnueabi
+
+tar  zcvf Filename.tar.gz Dirname  //--to compress  
+:/usr/src/arm-linux-3.3/toolchain_gnueabi-4.4.0_ARMv5TE/usr/bin
+/usr/src/arm-linux-3.3/toolchain_gnueabi-4.4.0_ARMv5TE/usr/bin/arm-unknown-linux-uclibcgnueabi-
+ PATH=$PATH:/usr/src/arm-linux-3.3/toolchain_gnueabi-4.4.0_ARMv5TE/usr/bin
+ PATH=/usr/local/Qt-5.5.0-arm/bin:$PATH
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig 
+export PKG_CONFIG_PATH 
+
+
+// compile QT5.5-->./configure -prefix /usr/local/Qt-5.5.0-arm -opensource -release -shared -xplatform linux-arm-g++ -nomake examples   -nomake  tests  -make libs -optimized-qmake  -sysroot /usr/src/arm-linux-3.3/toolchain_gnueabi-4.4.0_ARMv5TE/usr -v
+ sudo apt-get install zlib1g-dev
+ sudo apt-get install libgl1-mesa-dev
+
+下载 开源 TFT LCD display modules from the below link: 
+http://lxr.free-electrons.com/source/drivers/staging/fbtft/?v=4.4
+https://github.com/notro/fbtft/wiki
+       printk("%s(Line%d)**********\n",__func__, __LINE__);
+-------读写Frmaebuffer cmd----------------------
+//nfs.sh
+//mount -o nolock 192.168.1.216:/opt/gm8136/target/rootfs-cpio    /mnt/nfs     /*to mount NFS rootfs*?
+ifconfig eth0 192.168.1.215
+mount -t nfs -o nolock 192.168.1.216:/opt/gm8136/target/rootfs-cpio   /mnt
+
+insmod /mnt/fbtft_device.ko rotate=0 width=240 height=320 busnum=1 name=admatec_c-berry28 cs=0 gpios=reset:1,led:2 custom=1 speed=6000000 buswidth=9 mode=0
+insmod /mnt/fb_st7789v.ko
+mdev -s  
+source /mnt/etc/profile
+export QT_QPA_FONTDIR=usr/local/Qt-5.5.0-arm/lib/fonts
+cd /mnt/lib
+--------------------------------------
+
+//20170412
+setenv serverip 192.168.2.101
+tftp 2000000 uImage_8136;bootm 2000000
+/mnt/mtd/nfs.sh
+insmod /mnt/fbtft_device.ko rotate=0 width=240 height=320 busnum=1 name=admatec_c-berry28 cs=0 gpios=reset:1,led:2 custom=1 speed=6000000 buswidth=9 mode=0
+insmod /mnt/fb_st7789v.ko
+rmmod /mnt/nfs/fb_st7789v.ko
+rmmod /mnt/nfs/fbtft_device.ko
+
+//insmod /mnt/nfs/fbtft_device.ko rotate=0 busnum=1 name=admatec_c-berry28 cs=0 gpios=reset:1,led:2 custom=1 speed=6000000 width=240 height=320 buswidth=9 mode=0
+insmod fbtft.ko
+//insmod fbtft_device.ko busnum=1 name=admatec_c-berry28 cs=0 gpios=reset:1,led:2 custom=1 speed=6000000 width=240 height=240 buswidth=9 mode=0
+insmod /mnt/nfs/fb_st7789v.ko
+//insmod fbtft_device.ko busnum=1 name=admatec_c-berry28 cs=0 gpios=reset:1,led:2,dc:0 custom=1 speed=6000000 width=240 height=320
+命令清空屏幕：
+$ dd if=/dev/zero of=/dev/fb0 bs=1024 count=768
+
+//修改mt7601\include\rtmp_def.h文件中第1728行  INF_MAIN_DEV_NAME  "ra"->"wlan"
+//拷贝所需的数据文件RT2870STA.dat,将源码目录中的RT2870STA.dat拷贝到刚才创建的开发板的根文件系统 etc/Wireless/RT2870STA/目录中
+//加载驱动程序:insmod mt7601Usta.ko
+//配置wlan0网络,在开发板上执行以下命令ifconfig wlan0 up
+//通过ifconfig命令查看网络设备信息 执行 mdev -s 自动创建设备节点
+
+/mnt # insmod /mnt/mt7601Usta.ko 
+rtusb init rt2870 --->
+usbcore: registered new interface driver rt2870
+/mnt # 
+--------问题----------------------------------------------
+cd /home/yelsin/software/arm-linux-3.3/module_2014-11-14/fbtft_st7789v
+sudo cp -a fb_st7789v.ko /opt/gm8136/target/rootfs-cpio/fb_st7789v.ko 
+sudo cp -a fbtft.ko /opt/gm8136/target/rootfs-cpio/fbtft.ko 
+//sudo cp -a drivers/video/fbtft/fb_st7789v.ko /opt/gm8136/target/rootfs-cpio/fb_st7789v.ko 
+//sudo cp -a drivers/video/fbtft/fbtft_device.ko /opt/gm8136/target/rootfs-cpio/
+/lib/modules # insmod fb_st7789v.ko 
+insmod: can't insert 'fb_st7789v.ko': invalid module format
+
+\\192.168.1.216\software\arm-linux-3.3\linux-3.3-fa\drivers\gpio\devres.c
+\\192.168.1.216\software\arm-linux-3.3\linux-3.3-fa\drivers\video\  to add fbtft and modify Kconfig Makefile to add 'obj-y += fbtft/'  source "drivers/video/fbtft/Kconfig"
+----------------------------------------------------------
+1467-090-666-9388
+cd /sys/devices/platform
+cd /sys/bus/spi/drivers/fb_st7789v
+cd /sys/module/fb_st7789v/drivers
+//for dsw_4hdem FP
+//drivers\usb\core\hub.c ->line2039 HUB_SHORT_RESET_TIME 10
+#cat /proc/devices  //to see if new device add
+#mknod /dev/dswgpio_ax c 254 0
+#echo 'hello world' > /dev/dswgpio_ax  //write
+#cat /dev/dswgpio_ax    //to validate it
+- - -  - - - - - - - - - - -- - -  -
+static pmuReg_t pmu_reg[] = {
+/*  {reg_off,      bits_mask,     lock_bits,    init_val,       init_mask } */ 
+#if 1 //for dsw_4hdem FP
+	{0x58,  	   (0x0f << 20),  (0x0f << 20), 0, (0x0f << 20)},	// LEFT/RIGHT key
+	{0x58,  	   (0x0f << 6) ,  (0x03 << 6 ), 0, (0x03 << 6) },	// DOWN/UP key
+	{0x58,  	   (0x0f << 2) ,  (0x03 << 2 ), 0, (0x03 << 2) },	// ESC/ ENTER  key
+	{0x58,  	   (0x03 << 18),  (0x03 << 18), 0, (0x03 << 18)},	// Alarm Led
+	{0x50,  	   (0x03 << 8) ,  (0x03 << 8 ), 0, (0x03 << 8) },	// RUN_LED
+#else
+	{0x5c,  	   (0x03 << 24) | (0x03 << 26) | (0x03 << 28),  (0x03 << 24) | (0x03 << 26) | (0x03 << 28), 0, (0x03 << 24) | (0x03 << 26) | (0x03 << 28)},	//LED
+	{0x64,  	   (0x03 << 12) | (0x03 << 14),  (0x03 << 12) | (0x03 << 14), 0, (0x03 << 12) | (0x03 << 14)},	//IRCUT
+	{0x58,  	   (0x03 << 10),  (0x03 << 10), 0, (0x03 << 10)},	//oìía211a
+	{0x58,  	   (0x03 << 14),  (0x03 << 14), 0, (0x03 << 14)},	//°′?￥
+	{0x5c,  	   (0x03 << 30),  (0x03 << 30), 0, (0x03 << 30)},	//PIR
+	{0x50,  	   (0x03 << 2) | (0x03 << 4),  (0x03 << 2) | (0x03 << 4), (0x01 << 2) | (0x01 << 4), (0x03 << 2) | (0x03 << 4)},	//ía2?ê?è?ê?3?
+#endif
+};
+
+static pmuReg_t plat_pmu_reg_8136[] = {
+	/*
+	 * 面板健盘按键
+	 * ----------------------------------------------------
+	 * [23:22]	LEFT	==> 0: GPIO_1[2]
+	 * [21:20]	RIGHT	==> 0: GPIO_1[1]
+	 * [9:8]		DOWN	==> 0: GPIO_0[27]
+	 * [7:6]		UP		==> 0: GPIO_0[26]
+	 * [5:4]		ESC		==> 0: GPIO_0[25]
+	 * [3:2]		ENTER	==> 0: GPIO_0[24]
+	 * ----------------------------------------------------
+	 * LED指示灯 //[9:8] RUNNING_LED==> 0: GPIO_0[4]
+	 * ----------------------------------------------------
+	 * [19:18]	ALARM_LED	==> 0: GPIO_1[0]
+	 * ----------------------------------------------------
+	 */
+	{
+	 .reg_off   = 0x58,
+	 .bits_mask = ((0x0f << 20) | (0x0f << 6) | (0x0f << 2) | (0x03 << 18)),
+	 .lock_bits = ((0x0f << 20) | (0x0f << 6) | (0x0f << 2) | (0x03 << 18)),   ///< default don't lock these bit
+	 .init_val  = 0,
+	 .init_mask = ((0x0f << 20) | (0x0f << 6) | (0x0f << 2) | (0x03 << 18)),            ///< don't init
+	},
+	/*
+	 * ′uart串口通道选择
+	 * ----------------------------------------------------
+	 * [15:14]		153D_S1	==> 0: GPIO_1[29]
+	 * [13:12]		153D_S0	==> 0: GPIO_1[28]
+	 * ----------------------------------------------------
+	 */
+	{
+	 .reg_off   = 0x64,
+	 .bits_mask = (0x0f << 12),
+	 .lock_bits = (0x0f << 12),   ///< default don't lock these bit
+	 .init_val  = 0,
+	 .init_mask = (0x0f << 12),            ///< don't init
+	},
+};
+
+--->cd /home/yelsin/software/DSWproject/dswmb
+sudo cp -a dswmb.ko /opt/gm8136/target/rootfs-cpio/lib/modules
+--->cd /home/yelsin/software/DSWproject/mt7601
+sudo cp -a os/linux/mt7601Usta.ko /opt/gm8136/target/rootfs-cpio/lib/modules
+
+
+1 ------GPIO------------
+Device Drivers ---> GPIO Support ---> FTGPIO010 GPIO support
+ ls /sys/devices/platform/ftgpio010.0 //to make sure the driver is bulit in
+ ls /sys/class/gpio
+
+/* the procedure of setting gpio 0 as an output high */
+int ret = -1;
+if ((ret = gpio_request(0, "gpio0")) != 0) { return ret; }
+if ((ret = gpio_direction_output(0, 1)) != 0) { return ret; }
+
+in board setup code when
+setting up a platform_device using the GPIO, is mark its direction:
+
+	/* set as input or output, returning 0 or negative errno */
+	int gpio_direction_input(unsigned gpio);
+	int gpio_direction_output(unsigned gpio, int value);
+	/* GPIO INPUT:  return zero or nonzero */
+	int gpio_get_value(unsigned gpio);
+	/* GPIO OUTPUT */
+	void gpio_set_value(unsigned gpio, int value);
+Please note it must use gpio_request() to control the pin.
+request_irq() is used to register ISR.Please take the
+IRQF_SHARED flag into consideration. Please use the GPIO input as the interrupt for all pins of the same
+GPIO port that have the same IRQ number. Users should use the last parameter in request_irq(), dev, to
+distinguish the pin from being triggered in ISR.
+
+GPIO in User Space
+-------------------->
+Device Drivers ---> GPIO Support ---> /sys/class/gpio/... (sysfs interface)
+# ls /sys/class/gpio/ <<- To see if GPIO is correct or not
+/ # echo 0 > /sys/class/gpio/export <<- Request port0 pin0. (If using port1 pin0, echo 32 >
+/sys/class/gpio/export)
+/ # ls /sys/class/gpio/ <<- Generate a new folder(gpio0) and its attributes is in the folder
+export gpio0 gpiochip0 gpiochip32 gpiochip64 unexport
+/ # cat /sys/class/gpio/gpio0/direction <<- Check input of output
+in
+/ # cat /sys/class/gpio/gpio0/value <<- Above result is input and check its voltage. 1 means high.
+1
+/ # echo out > /sys/class/gpio/gpio0/direction <<- Change to output
+/ # cat /sys/class/gpio/gpio0/direction <<- Check result 
+out
+/ # cat /sys/class/gpio/gpio0/value <<- Check voltage of output 
+0
+/ # echo 1 > /sys/class/gpio/gpio0/value <<- Set voltage to high
+/ # cat /sys/class/gpio/gpio0/value <<- Check result
+1
+Important: Before using this user space function, users must set pinmux for the GPIO pin.
+
+
+
+
+
+
+
+
+
+----------------------------------------
+Creating 7 MTD partitions on "nor-flash":
+0x000000010000-0x000000060000 : "UBOOT"
+0x000000060000-0x000000400000 : "LINUX"
+0x000000400000-0x000000800000 : "FS"
+0x000000800000-0x000000900000 : "MTD"
+0x000000900000-0x000000c80000 : "APP0"
+0x000000c80000-0x000001000000 : "APP1"
+0x000000000000-0x000001000000 : "ALL"
+
+2.设置default env值：可以使用env default -a
+
+TFTP load烧写/启动TFTP服务
+  tftp 0x2000000 mbootpImage// command to download the code
+  go 0x2000000//bootup
+
+----------------------------
+1.安装tftp-server 
+sudo apt-get install tftp-hpa（如果不需要客户端可以不安装）
+ 
+tftp-hpa是客户端
+ 
+tftpd-hpa是服务器端
+ 
+2.配置TFTP服务器
+ 
+sudo vim /etc/default/tftpd-hpa
+ 
+将原来的内容改为:
+ 
+TFTP_USERNAME="tftp"
+ 
+TFTP_ADDRESS="0.0.0.0:69"
+ 
+TFTP_DIRECTORY="tftp根目录" #服务器目录,需要设置权限为777,chomd 777
+ 
+TFTP_OPTIONS="-l -c -s"
+ 
+3.重新启动TFTP服务
+ 
+sudo service tftpd-hpa restart
+------------------------------------
+
+
+1).在串口设置board的ip相关参数
+setenv serverip 192.168.1.216
+setenv nfsserver 192.168.1.216
+
+setenv netmask 255.255.255.0
+setenv gatewayip 192.168.1.1
+setenv ipaddr  192.168.1.209 
+
+//set rootpath '/opt/goke/rootfs/rootfs_glibc'
+set rootpath '/opt/gm8136/target/rootfs-cpio'
+
+set bootfile 'mbootpImage'
+set bootdelay 7
+set loadaddr 0x02000000
+saveenv
+
+NFS内核启动参数
+-------------------------------------------------------------------
+////opt/gm8136/target/rootfs-cpio *(rw,sync,no_root_squash) 
+//copy rootfs-cpio_8136.tgz to  /opt/gm8136/
+under /opt/gm8136/target/
+sudo tar zxvf /opt/target_rootfs.tgz -C /opt/gm8136/target
+
+7.1.3 启动NFS服务
+$sudo apt-get install nfs-kernel-server //install
+service nfs-kernel-server //to see if installed
+service nfs start
+service portmap start
+　$sudo /etc/init.d/portmap restart
+　$sudo /etc/init.d/nfs-kernel-server restart //to effect NFS
+
+ sudo mkdir /nfs
+  sudo chmod 777 /nfs
+ sudo service nfs-kernel-server restart
+ sudo vim /etc/exports ,to add path
+ /nfs/../ rootfs *(rw,sync, no_root_squash)  //;,no_subtree_check)
+7.1.4 测试NFS服务
+　此时可以运行以下命令来显示一下共享出来的目录：
+  exportfs -ra
+　$showmount -e 
+sudo mount -t nfs localhost:/opt/gm8136/target/rootfs-cpio /mnt/  
+----------------------
+Kernel ->Boot options -> Default kernel command string  
+    console=ttyS0,115200 mem=256M gmmem=190M user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+*NFS启动方式*
+
+mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+//
+setenv bootargs 'console=ttyS0,115200 root=/dev/nfs nfsroot=192.168.1.216:/opt/gm8136/target/rootfs-cpio rw ip=192.168.1.209::192.168.1.1:255.255.255.0:eth0:off init=/linuxrc mem=128M gmmem=90M user_debug=31' 
+
+//orginal 
+setenv bootargs 'console=ttyS0,115200 root=/dev/mtdblock2 rootfstype=squashfs init=/squashfs_init mem=128M gmmem=90M user_debug=31' 
+
+//setenv bootargs 'console=ttyS0,115200 root=/dev/nfs rw nfsroot=192.168.1.216:/opt/gm8136/target/rootfs-cpio ip=192.168.1.209::192.168.1.163:255.255.255.0:eth0:off init=/linuxrc mem=128m' 
+
+//setenv bootargs 'console=ttySGK0 noinitrd root=/dev/mtdblock5  rootfstype=squashfs mem=46m sensor=OV2710 wifi=MT7601 product=WIFI_DVR rtc=0 version=v1.2.3.2 phytype=1 rootfstype=squashfs switch_printk=1 video=gk_fb0:720x480,720x480,8,0'
+//set tftpboot 'tftp ${loadaddr} ${bootfile};go 0x2000000'
+set tftpboot ' root=/dev/nfs nfsroot=${nfsserver}:${rootpath} ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdev} mac=${ethaddr} console=ttyS0,${baudrate} init=/linuxrc mem=${mem} gmmem=90M ;tftp ${loadaddr} ${bootfile};go ${loadaddr}'
+------------------------------------------------------------------
+console=ttySGK0 root=/dev/nfs rw nfsroot=192.168.0.100:/rootfs ip=192.168.0.102::192.168.0.1:255.255.0.0:goke:eth0:off  init=/linuxrc mem=46m
+set bootcmd 'run tftpboot'
+set rootpath '/opt/goke/rootfs/rootfs_glibc'
+Kernel command line: root=/dev/nfs nfsroot=192.168.57.124:/home/fs/rootfs_glibc,proto=tcp,nfsvers=3,nolock ip=192.168.55.209:192.168.55.144:192.168.55.1:255.255.255.0:"gk8602":eth0 mac=3C:97:0E:22:E1:14 phytype=0 console=ttySGK0,115200 mem=46M
+
+nfsboot =setenv bootargs root=/dev/nfs nfsroot=${nfsserver}:${rootpath},proto=tcp,nfsvers=3,nolock ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdev} mac=${ethaddr} phytype=${phytype} ${fb} console=${consoledev},${baudrate} mem=${mem} sensor=${sensor} wifi=${wifi} rtc=${rtc} acc=${acc} product=${product} ;sf probe; sf read 0xc1000000 0x100000 0x300000; bootm
+tftpboot=setenv bootargs root=/dev/nfs nfsroot=${nfsserver}:${rootpath},proto=tcp,nfsvers=3,nolock ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdev} mac=${ethaddr} phytype=${phytype} console=${consoledev},${baudrate} mem=${mem} ${fb} sensor=${sensor} rtc=${rtc} acc=${acc} wifi=${wifi} product=${product};tftpboot ${bootfile};bootm
+         tftp 0xC1000000 u-boot_gk7101_yeburn.bin
+         sf probe
+         sf erase 0x0 0x50000             //0x40000-256k the size
+         sf write 0xC1000000 0x0 0x50000  //0x40000
+  
+
+2.2.2.3 Make Kernel
+-----------------------
+To make a Linux kernel, users need to clean 
+# make clean
+# copy “linux-3.3-fa/arch/arm/configs/GM8136_defconfig” to update “.config”
+FA6-Linux provides the shell script, “build”, for users to easily make the kernel.
+# ./build     //sudo cp arch/arm/boot/zImage /tftpboot/mbootpImage
+If users want to use the U-BOOT transfer argument to Linux, please run the following shell script:
+# ./build_uImage_8136
+
+
+in /usr/src/arm-linux-3.3/target
+sudo ./mkrootfs.sh  //./mksquashfs rootfs-cpio rootfs-cpio_master.squashfs.img -comp xz
+
+the run ./build_uImage_8136 command to generate the kernel image - uImage_8136.
+  tftp 0x2000000 mbootpImage// command to download the code
+  go 0x2000000//bootup
+
+//tftpboot=tftp 0x2000000 ${bootfile};go 0x2000000
+//setenv bootargs 'console=ttyS0,115200 root=/dev/mtdblock2 rootfstype=squashfs init=/squashfs_init mem=128M gmmem=90M user_debug=31' 
+ //sf probe; sf read  0x2000000 0x60000 0x3a0000;bootm
+
+2.2.3.2 Make U-BOOT
+---------------------
+ users can build U-BOOT with the following commands:
+GM.h file is located at: /usr/src/arm-linux-3.3/u-boot-2013.01/include/configs/GM8136.h.
+# cd /usr/src/arm-linux-3.3/u-boot-2013.01
+# ./make_8136  //make gm8136_config
+
+ tftp 0x2000000 u-boot_spiye.bin
+ // sf erase 0x0 0x60000 
+  //  sf write 0x20000000 0x0 0x60000  //0x40000
+
+使用make menuconfig 等功能，都会用到ncurses库。
+
+ubuntu下安装ncurses库的方法:
+
+root权限下输入：sudo apt-get install libncurses5-dev
+
+
+
+-----------------------------------------------------
+1. 在终端执行 sudo passwd root 指令后，系统将会提示你设置一个新的 root 帐号密码。
+
+
+
+
+--------------------------GM8136Uboot print--------
+GM # print
+auimg0=u-boot_spi.bin
+auimg1=uImage_8136
+auimg2=rootfs-cpio_8136.squashfs.img
+auimg3=mtd.img
+auimgaio=flash.img
+autoupdate=no
+baudrate=115200
+bootcmd=sf probe 0:0;run lm;bootm 0x2000000
+bootdelay=3
+cmd1=mem=64M gmmem=30M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd2=mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd3=mem=256M gmmem=190M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd4=mem=512M gmmem=432M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+ethact=eth0
+ethaddr=00:42:70:00:30:22
+gatewayip=192.168.1.1
+ipaddr=192.168.1.209
+lm=sf read 0x02000000 z
+netmask=255.255.255.0
+nfsserver=192.168.1.216
+serverip=192.168.1.216
+stderr=serial
+stdin=serial
+stdout=serial
+
+Environment size: 939/65532 bytes
+GM # ping 192.168.1.216
+RMII mode
+Phy ID = 0xc54
+FULL
+PHY_SPEED_100M
+Using eth0 device
+host 192.168.1.216 is alive
+---------------------------------
+Install FA6-Linux Distribution
+Install the FA6-Linux by extracting the tar archive with the sequence listed below:
+1. Copy the file, “arm-linux-3.3.tgz”, to the /usr/src directory by # cp arm-linux-3.3.tgz
+/usr/src
+2. Extract the file, “arm-linux-3.3.tgz”
+# cd /usr/src
+# tar zxvf arm-linux-3.3.tgz
+
+
+
+-------------uboot log-------------------
+GM # print
+auimg0=u-boot_spi.bin
+auimg1=uImage_8136
+auimg2=rootfs-cpio_8136.squashfs.img
+auimg3=mtd.img
+auimgaio=flash.img
+autoupdate=no
+baudrate=115200
+bootargs=console=ttyS0,115200 root=/dev/mtdblock2 rootfstype=squashfs init=/squashfs_init mem=128M gmmem=90M user_debug=31
+bootcmd=sf probe; sf read ${loadaddr} 0x60000 0x3a0000;bootm
+bootdelay=3
+bootfile=mbootpImage
+cmd1=mem=64M gmmem=30M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd2=mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd3=mem=256M gmmem=190M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd4=mem=512M gmmem=432M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+ethact=eth0
+ethaddr=30:20:75:73:65:72
+filesize=574C20
+gatewayip=192.168.1.1
+ipaddr=192.168.1.209
+lm=sf read 0x02000000 z
+loadaddr=0x02000000
+netmask=255.255.255.0
+nfsserver=192.168.1.216
+rootpath=/opt/gm8136/target/rootfs-cpio
+serverip=192.168.1.216
+stderr=serial
+stdin=serial
+stdout=serial
+tftpboot=setenv bootargs root=/dev/nfs nfsroot=${nfsserver}:${rootpath} ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdev} mac=${ethaddr} console=ttyS0,${baudrate} init=/linuxrc mem=${mem} gmmem=90M ;tftp ${loadaddr} ${bootfile};go ${loadaddr}
+
+Environment size: 1452/65532 bytes
+GM # run tftpboot
+RMII mode
+-----------------MTD2 module org---------------------------
+/lib/modules # ls
+3.3.0              favc_rc.ko         frotation_drv.ko   osd_dispatch.ko
+adda308.ko         fe_common.ko       fscaler300.ko      pmonitor.ko
+audio_drv.ko       fisp328.ko         ft3dnr200.ko       sar_adc.ko
+codec.ko           fisp_algorithm.ko  ftpwmtmr010.ko     sw_osg.ko
+decoder.ko         fisp_ov9715.ko     gs.ko              think2d.ko
+dswgpio.ko         fisp_sc1045.ko     log.ko             vcap0.ko
+dswgpio_ax.ko      flcd200-common.ko  loop_comm.ko       vcap300_common.ko
+dswptz.ko          flcd200-pip.ko     mje_rc.ko          vcap300_isp.ko
+dswrf.ko           fmcp_drv.ko        mp4e_rc.ko         vpd_master.ko
+dswrf_ax.ko        fmjpeg_drv.ko      ms.ko              vpd_slave.ko
+em.ko              fmpeg4_drv.ko      mt7601Uap.ko
+favc_enc.ko        frammap.ko         mt7601Usta.ko
+
+
+--------------Wifi wpa 
+
+1源码下载网站 http://www.openssl.org/source/，咱们用的源码是openssl-0.9.8e.tar.gz
+./Configure linux-elf-arm -DL_ENDIAN linux:'arm-unknown-linux-uclibcgnueabi-gcc' shared --prefix=/home/yelsin/work/yelsin2017/openssl	//要视具体路径而定
+make 
+make install
+2 wpa_suplicant 的源码下载http://hostap.epitest.fi/wpa_supplicant/   makefile修改
+  CFLAGS += -I/home/yelsin/work/yelsin2017/openssl/include   #yelsin  add L30
+   LIBS += -lssl -L/home/yelsin/work/yelsin2017/openssl/lib/
+   LIBS_p += -lcrypto -L/home/yelsin/work/yelsin2017/openssl/lib/
+cp defconfig .config
+ make

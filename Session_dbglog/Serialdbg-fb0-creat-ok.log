@@ -1,0 +1,520 @@
+﻿------------------------------------
+/ # 
+/ # ls /dev
+console       loop4         mtd3          mtdblock3     ram11         ram8
+device        loop5         mtd3ro        mtdblock4     ram12         ram9
+full          loop6         mtd4          mtdblock5     ram13         random
+i2c-0         loop7         mtd4ro        mtdblock6     ram14         shm
+kmem          mem           mtd5          null          ram15         tty
+kmsg          mtd0          mtd5ro        ppp           ram2          ttyS0
+loop-control  mtd0ro        mtd6          ptmx          ram3          ttyS1
+loop0         mtd1          mtd6ro        pts           ram4          ttyS2
+loop1         mtd1ro        mtdblock0     ram0          ram5          urandom
+loop2         mtd2          mtdblock1     ram1          ram6          watchdog
+loop3         mtd2ro        mtdblock2     ram10         ram7          zero
+/ # /dev/graphics/fb0 /dev/zero  
+/bin/sh: /dev/graphics/fb0: not found
+/ # /dev/graphics fb0 /dev/zero  
+/bin/sh: /dev/graphics: not found
+/ # dd if=/dev/zero of=/dev/graphics/fb0 bs=1280 count=720
+dd: can't open '/dev/graphics/fb0': No such file or directory
+
+------------------------------------------------------------
+
+U-Boot 2013.01 (Apr 28 2015 - 11:41:15)
+
+I2C:   ready
+DRAM:  128 MiB
+ROM CODE has enable I cache
+SPI mode
+SF: Got idcodes
+00000000: ef 40 18 00    .@..
+SF: Detected W25Q128 with page size 64 KiB, total 16 MiB
+flash is 3byte mode
+In:    serial
+Out:   serial
+Err:   serial
+
+-------------------------------
+ID: 8136150
+AC: 200  HC: 200  P1: 860  P2: 600  P3: 540
+C6: 860  DR:1146
+J: 286   H1: 286
+-------------------------------
+Net:   GMAC set RMII mode
+reset PHY
+eth0
+Warning: eth0 MAC addresses don't match:
+Address in SROM is         88:81:fa:07:88:81
+Address in environment is  00:42:70:00:30:23
+
+Hit any key to stop autoboot:  0 
+GM # 
+GM # run tftpboot
+Unknown command 'root=/dev/nfs' - try 'help'
+RMII mode
+Phy ID = 0xc54
+FULL
+PHY_SPEED_100M
+Using eth0 device
+TFTP from server 192.168.1.216; our IP address is 192.168.1.209
+Filename 'mbootpImage'.
+Load address: 0x2000000
+Loading: #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         ####################
+         1.5 MiB/s
+done
+Bytes transferred = 5062408 (4d3f08 hex)
+## Starting application at 0x02000000 ...
+Uncompressing Linux... done, booting the kernel.
+Booting Linux on physical CPU 0
+Linux version 3.3.0 (yelsin@ubuntu16) (gcc version 4.4.0 20100318 (experimental) (Buildroot 2012.02) ) #246 PREEMPT Wed Apr 12 09:24:34 CST 2017
+CPU: FA6 [66056263] revision 3 (ARMv5TE), cr=0000397f
+CPU VIPT aliasing data cache, unknown instruction cache
+Machine: Grain-Media GM8136 series
+Memory policy: ECC disabled, Data cache writeback
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+Kernel command line: console=ttyS0,115200 mem=128M gmmem=90M user_debug=31 root=/dev/nfs nfsroot=192.168.1.216:/opt/gm8136/target/rootfs-cpio rw init=/linuxrc ip=192.168.1.209::192.168.1.1:255.255.255.0:eth0:off
+PID hash table entries: 512 (order: -1, 2048 bytes)
+Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+Memory: 128MB = 128MB total
+Memory: 119020k/119020k available, 12052k reserved, 0K highmem
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    vmalloc : 0x88800000 - 0xff000000   (1896 MB)
+    lowmem  : 0x80000000 - 0x88000000   ( 128 MB)
+    modules : 0x7f000000 - 0x80000000   (  16 MB)
+      .text : 0x80008000 - 0x803dfb4c   (3935 kB)
+      .init : 0x803e0000 - 0x80a6c000   (6704 kB)
+      .data : 0x80a6c000 - 0x80a87660   ( 110 kB)
+       .bss : 0x80a87684 - 0x80aa04d4   ( 100 kB)
+NR_IRQS:64
+gm_jiffies_init, system HZ: 100, pClk: 100000000 
+console [ttyS0] enabled
+Calibrating delay loop... 858.52 BogoMIPS (lpj=4292608)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+Setting up static identity map for 0x2e6910 - 0x2e6958
+devtmpfs: initialized
+FMEM: 23040 pages(0x5a00000 bytes) from bank0 are reserved for Frammap. 
+FMEM: Logical memory ends up at 0x88000000, init_mm:0x80004000(0x4000), PAGE_OFFSET:0x80000000(0x0), 
+FMEM: FA726 Test and Debug Register: 0x0 
+NET: Registered protocol family 16
+PMU: Mapped at 0xfe000000 
+IC: GM8136, version: 0x1 
+iotable: VA: 0xfe000000, PA: 0x90c00000, Length: 4096 
+iotable: VA: 0xfe001000, PA: 0x90700000, Length: 4096 
+iotable: VA: 0xfe002000, PA: 0x90800000, Length: 4096 
+iotable: VA: 0xfe003000, PA: 0x90900000, Length: 4096 
+iotable: VA: 0xfe004000, PA: 0x90d00000, Length: 4096 
+iotable: VA: 0xfe005000, PA: 0x96000000, Length: 4096 
+bio: create slab <bio-0> at 0
+SCSI subsystem initialized
+Switching to clocksource fttmr010:1
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 4096 (order: 3, 32768 bytes)
+TCP bind hash table entries: 4096 (order: 2, 16384 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP reno registered
+UDP hash table entries: 256 (order: 0, 4096 bytes)
+UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Video Timer(timer3) Max 42000ms in 0xfa56ea00 HZ.
+ftdmac020 ftdmac020.0: DMA engine driver: irq 1, mapped at 0x88804000
+GM CPU frequency driver
+CPUFREQ support for gm initialized
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+JFFS2 version 2.2. (NAND) 漏 2001-2006 Red Hat, Inc.
+msgmni has been set to 232
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+gpiochip_add: registered GPIOs 0 to 31 on device: ftgpio010.0
+probe ftgpio010.0 OK, at 0x88862000
+gpiochip_add: registered GPIOs 32 to 63 on device: ftgpio010.1
+probe ftgpio010.1 OK, at 0x88864000
+Serial: 8250/16550 driver, 3 ports, IRQ sharing disabled
+serial8250: ttyS0 at I/O 0xfe001000 (irq = 21) is a 16550A
+serial8250: ttyS1 at I/O 0xfe002000 (irq = 22) is a 16550A
+serial8250: ttyS2 at I/O 0xfe003000 (irq = 25) is a 16550A
+brd: module loaded
+loop: module loaded
+Not for SPI-NAND pin mux
+ftssp010_spi probe...
+bus num = 1, chip select = 4
+Setup device fb_st7789v, chip select 0, mode = 0xb, speed = 6000000
+Probe FTSSP010 SPI Controller at 0x91400000 (irq 11)
+SPI020 init
+SPI020 uses AHB DMA mode
+FTSPI020 enable DMA handshake 0x3
+SPI020 gets DMA channel 0
+ftspi020 ftspi020.0: Faraday FTSPI020 Controller at 0x92300000(0x88868000) irq 54.
+spi spi0.0: setup: bpw 8 mode 0
+CLK div field set 1
+ERASE SECTOR 64K
+SPI_FLASH spi0.0: w25q128bv (16384 Kbytes)
+Creating 7 MTD partitions on "nor-flash":
+0x000000010000-0x000000060000 : "UBOOT"
+0x000000060000-0x000000400000 : "LINUX"
+0x000000400000-0x000000800000 : "FS"
+0x000000800000-0x000000900000 : "MTD"
+0x000000900000-0x000000c80000 : "APP0"
+0x000000c80000-0x000001000000 : "APP1"
+0x000000000000-0x000001000000 : "ALL"
+Probe FTSPI020 SPI Controller at 0x92300000 (irq 54)
+ftgmac: Loading version 2.0 ...
+ftgmac100-0-mdio: probed
+ftgmac100-0 ftgmac100-0.0: eth0: 1 tx queue used (max: 2)
+ftgmac100-0 ftgmac100-0.0: eth0: 1 rx queue used (max: 1)
+ftgmac100-0 ftgmac100-0.0: eth0: irq 3, mapped at 8886a000
+ftgmac100-0 ftgmac100-0.0: eth0: generated random MAC address 0a:47:59:f3:bd:b7
+PPP generic driver version 2.4.2
+NET: Registered protocol family 24
+i2c /dev entries driver
+ftiic010 ftiic010.0: irq 18, mapped at 8886c000
+TCP cubic registered
+NET: Registered protocol family 17
+Registering the dns_resolver key type
+Warning: unable to open an initial console.
+Freeing init memory: 6704K
+Frammap: DDR0: memory base=0x1800000, memory size=0x5a00000, align_size = 4K. 
+Frammap: version 1.1.2, and the system has 1 DDR.
+Frammap: fail to open /mnt/mtd/config_8136, /tmp/template_8136 is created.
+
+
+BusyBox v1.19.4 (2013-09-04 16:29:58 CST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+/ # ifconfig eth0 192.168.1.215
+HW reset
+/ # phy speed is 10, half duplex
+HW reset
+phy speed is 100, full duplex
+HW reset
+
+/ # mount -o nolock 192.168.1.216:/opt/gm8136/target/rootfs-cpio    /mnt/nfs 
+/ # insmod /mnt/nfs/fbtft_device.ko busnum=1 name=admatec_c-berry28 cs=0 gpios=r
+eset:1,led:2 custom=1 speed=6000000 width=320 height=240 buswidth=9 mode=0
+spi spi1.0: fb_st7789v spi1.0 6000kHz 8 bits mode=0x0B
+SPI_FLASH spi0.0: SPI_FLASH spi0.0 50000kHz 8 bits mode=0x00
+spi spi1.0: Deleting spi1.0
+Setup device fb_st7789v, chip select 0, mode = 0x8, speed = 6000000
+fbtft_device: GPIOS used by 'admatec_c-berry28':
+fbtft_device: 'reset' = GPIO1
+fbtft_device: 'led' = GPIO2
+SPI_FLASH spi0.0: SPI_FLASH spi0.0 50000kHz 8 bits mode=0x00
+spi spi1.0: fb_st7789v spi1.0 6000kHz 8 bits mode=0x08
+/ # insmod /mnt/nfs/fb_st7789v.ko
+fb_st7789v spi1.0: fbtft_probe_common()
+fb_st7789v spi1.0: fbtft_gamma_parse_str() str=
+fb_st7789v spi1.0: D0 00 14 15 13 2C 42 43 4E 09 16 14 18 21
+D0 00 14 15 13 0B 43 55 53 0C 17 14 23 20
+sssssssssssssss = 8, 9
+fb_st7789v spi1.0: fbtft_request_gpios_match('reset')
+fb_st7789v spi1.0: fbtft_request_gpios: 'reset' = GPIO1
+fb_st7789v spi1.0: fbtft_request_gpios_match('led')
+fb_st7789v spi1.0: fbtft_request_gpios: 'led' = GPIO2
+fb_st7789v spi1.0: fbtft_verify_gpios()
+fb_st7789v spi1.0: fbtft_reset()
+fb_st7789v spi1.0: init: write(0x11) 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 11
+fb_st7789v spi1.0: fbtft_write_spi(len=2): 10 01
+fb_st7789v spi1.0: init: mdelay(120)
+fb_st7789v spi1.0: init: write(0x3A) 0x05 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 3a 05
+fb_st7789v spi1.0: fbtft_write_spi(len=4): b8 00 41 03
+fb_st7789v spi1.0: init: write(0xB2) 0x0C 0x0C 0x00 0x33 0x33 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: b2 0c 0c 00 33 33
+fb_st7789v spi1.0: fbtft_write_spi(len=12): 9a 00 61 02 61 02 01 02 99 03 99 03
+fb_st7789v spi1.0: init: write(0xB7) 0x35 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: b7 35
+fb_st7789v spi1.0: fbtft_write_spi(len=4): da 01 59 03
+fb_st7789v spi1.0: init: write(0xC2) 0x01 0xFF 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: c2 01 ff
+fb_st7789v spi1.0: fbtft_write_spi(len=6): 86 00 01 03 ff 03
+fb_st7789v spi1.0: init: write(0xC3) 0x17 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: c3 17
+fb_st7789v spi1.0: fbtft_write_spi(len=4): 86 01 d1 03
+fb_st7789v spi1.0: init: write(0xC4) 0x20 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: c4 20
+fb_st7789v spi1.0: fbtft_write_spi(len=4): 46 00 09 02
+fb_st7789v spi1.0: init: write(0xBB) 0x17 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: bb 17
+fb_st7789v spi1.0: fbtft_write_spi(len=4): ba 01 d1 03
+fb_st7789v spi1.0: init: write(0xC5) 0x20 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: c5 20
+fb_st7789v spi1.0: fbtft_write_spi(len=4): 46 01 09 02
+fb_st7789v spi1.0: init: write(0xD0) 0xA4 0xA1 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: d0 a4 a1
+fb_st7789v spi1.0: fbtft_write_spi(len=6): 16 00 4b 02 0b 03
+fb_st7789v spi1.0: init: write(0x29) 
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 29
+fb_st7789v spi1.0: fbtft_write_spi(len=2): 28 01
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 36 00
+fb_st7789v spi1.0: fbtft_write_spi(len=4): d8 00 01 02
+fb_st7789v spi1.0: fbtft_update_display(start_line=0, end_line=239)
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 2a 00 00 01 3f
+fb_st7789v spi1.0: fbtft_write_spi(len=10): a8 00 01 02 01 02 01 03 f9 03
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 2b 00 00 00 ef
+fb_st7789v spi1.0: fbtft_write_spi(len=10): a8 01 01 02 01 02 01 02 ef 03
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 2c
+fb_st7789v spi1.0: fbtft_write_spi(len=2): 68 00
+ssssssssssssss
+fb_st7789v spi1.0: fbtft_write_vmem16_bus9(offset=0, len=153600)
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: Display update: 112 kB/s, fps=0
+------------------***>
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: e0 d0 00 14 15 13 2c 42 43 4e 09 16 14 18 21
+fb_st7789v spi1.0: fbtft_write_spi(len=30): 0e 00 17 02 01 02 51 02 51 03 91 03 69 02 85 02 85 03 e5 02 21 03 d1 02 51 02 31 02 09 03
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: e1 d0 00 14 15 13 0b 43 55 53 0c 17 14 23 20
+fb_st7789v spi1.0: fbtft_write_spi(len=30): 0e 01 17 02 01 02 51 02 51 03 91 03 a1 03 85 03 55 03 95 03 61 02 d1 03 51 02 89 03 09 02
++++++++++++++++**> = 0, 2
+graphics fb0: fb_st7789v frame buffer, 320x240, 150 KiB video memory, 4 KiB DMA buffer memory, fps=20, spi1.0 at 6 MHz
+fbtft_register_framebuffer(L998)**********
+fb_st7789v spi1.0: fbtft_backlight_update_status: polarity=1, power=0, fb_blank=0
+/ # 
+/ # cat /proc/devices 
+Character devices:
+  1 mem
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+ 10 misc
+ 13 input
+ 29 fb
+ 89 i2c
+ 90 mtd
+108 ppp
+128 ptm
+136 pts
+
+Block devices:
+  1 ramdisk
+259 blkext
+  7 loop
+  8 sd
+ 31 mtdblock
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+/ # ls /de
+ls: /de: No such file or directory
+/ # ls /dev
+console       loop4         mtd3          mtdblock3     ram11         ram8
+device        loop5         mtd3ro        mtdblock4     ram12         ram9
+full          loop6         mtd4          mtdblock5     ram13         random
+i2c-0         loop7         mtd4ro        mtdblock6     ram14         shm
+kmem          mem           mtd5          null          ram15         tty
+kmsg          mtd0          mtd5ro        ppp           ram2          ttyS0
+loop-control  mtd0ro        mtd6          ptmx          ram3          ttyS1
+loop0         mtd1          mtd6ro        pts           ram4          ttyS2
+loop1         mtd1ro        mtdblock0     ram0          ram5          urandom
+loop2         mtd2          mtdblock1     ram1          ram6          watchdog
+loop3         mtd2ro        mtdblock2     ram10         ram7          zero
+/ # 
+/ # mdev -s
+/ # ls /dev
+console       loop3         mtd3          mtdblock4     ram13         shm
+device        loop4         mtd3ro        mtdblock5     ram14         tty
+fb0           loop5         mtd4          mtdblock6     ram15         ttyS0
+frammap0      loop6         mtd4ro        null          ram2          ttyS1
+full          loop7         mtd5          ppp           ram3          ttyS2
+i2c-0         mem           mtd5ro        ptmx          ram4          urandom
+kmem          mtd0          mtd6          pts           ram5          watchdog
+kmsg          mtd0ro        mtd6ro        ram0          ram6          zero
+loop-control  mtd1          mtdblock0     ram1          ram7
+loop0         mtd1ro        mtdblock1     ram10         ram8
+loop1         mtd2          mtdblock2     ram11         ram9
+loop2         mtd2ro        mtdblock3     ram12         random
+/ # cd /dev/fb0
+/bin/sh: cd: can't cd to /dev/fb0
+/ # 
+/ #  dd if=/dev/zero of=/dev/fb0 bs=320 count=240
+240+0 records in
+240+0 records out
+76800 bytes (75.0KB) copied, 0.001087 seconds, 67.4MB/s
+/ # fb_st7789v spi1.0: fbtft_update_display(start_line=0, end_line=238)
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 2a 00 00 01 3f
+fb_st7789v spi1.0: fbtft_write_spi(len=10): a8 00 01 02 01 02 01 03 f9 03
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 2b 00 00 00 ee
+fb_st7789v spi1.0: fbtft_write_spi(len=10): a8 01 01 02 01 02 01 02 ef 02
+fb_st7789v spi1.0: fbtft_write_reg8_bus9: 2c
+fb_st7789v spi1.0: fbtft_write_spi(len=2): 68 00
+ssssssssssssss
+fb_st7789v spi1.0: fbtft_write_vmem16_bus9(offset=0, len=152960)
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=4096): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: fbtft_write_spi(len=2816): 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 81 03 07 02 ...
+fb_st7789v spi1.0: Display update: 111 kB/s, fps=0
+

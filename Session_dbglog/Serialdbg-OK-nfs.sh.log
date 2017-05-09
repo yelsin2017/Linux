@@ -1,0 +1,1086 @@
+
+/etc/init.d # reboot
+The system is going down NOW!
+Sent SIGTERM to all processes
+Sent SIGKILL to all processes
+Restarting system.
+0GM8136S go.声mode 3
+SPI NOR ID code:0xef 0x40 0x18
+SPI jump setting is 3 bytes mode
+Boot image offset: 0x10000. size: 0x50000. Booting Image .....
+
+
+U-Boot 2013.01 (Apr 28 2015 - 11:41:15)
+
+I2C:   ready
+DRAM:  128 MiB
+ROM CODE has enable I cache
+SPI mode
+SF: Got idcodes
+00000000: ef 40 18 00    .@..
+SF: Detected W25Q128 with page size 64 KiB, total 16 MiB
+flash is 3byte mode
+In:    serial
+Out:   serial
+Err:   serial
+
+-------------------------------
+ID: 8136150
+AC: 200  HC: 200  P1: 860  P2: 600  P3: 540
+C6: 860  DR:1146
+J: 286   H1: 286
+-------------------------------
+Net:   GMAC set RMII mode
+reset PHY
+eth0
+Warning: eth0 MAC addresses don't match:
+Address in SROM is         88:81:fa:07:88:81
+Address in environment is  30:20:75:73:65:72
+
+Hit any key to stop autoboot:  0 
+GM # 
+GM # print
+auimg0=u-boot_spi.bin
+auimg1=uImage_8136
+auimg2=rootfs-cpio_8136.squashfs.img
+auimg3=mtd.img
+auimgaio=flash.img
+autoupdate=no
+baudrate=115200
+bootargs=console=ttyS0,115200 root=/dev/nfs nfsroot=192.168.1.216:/opt/gm8136/target/rootfs-cpio rw ip=192.168.1.209::192.168.1.1:255.255.255.0:eth0:off init=/linuxrc mem=128M gmmem=90M user_debug=31
+bootcmd=run tftpboot
+bootdelay=3
+bootfile=mbootpImage
+cmd1=mem=64M gmmem=30M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd2=mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd3=mem=256M gmmem=190M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd4=mem=512M gmmem=432M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+ethact=eth0
+ethaddr=30:20:75:73:65:72
+fileaddr=2000000
+filesize=30CAE8
+gatewayip=192.168.1.1
+ipaddr=192.168.1.209
+lm=sf read 0x02000000 z
+netmask=255.255.255.0
+nfsserver=192.168.1.216
+rootpath=/opt/gm8136/target/rootfs-cpio
+serverip=192.168.1.216
+stderr=serial
+stdin=serial
+stdout=serial
+tftpboot=tftp 0x2000000 ${bootfile};go 0x2000000
+
+Environment size: 1271/65532 bytes
+GM # 
+GM # run tftpboot
+RMII mode
+Phy ID = 0xc54
+FULL
+PHY_SPEED_100M
+Using eth0 device
+TFTP from server 192.168.1.216; our IP address is 192.168.1.209
+Filename 'mbootpImage'.
+Load address: 0x2000000
+Loading: #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #######
+         1.5 MiB/s
+done
+Bytes transferred = 4865528 (4a3df8 hex)
+## Starting application at 0x02000000 ...
+Uncompressing Linux... done, booting the kernel.
+Booting Linux on physical CPU 0
+Linux version 3.3.0 (yelsin@ubuntu16) (gcc version 4.4.0 20100318 (experimental) (Buildroot 2012.02) ) #53 PREEMPT Tue Mar 14 11:47:48 CST 2017
+CPU: FA6 [66056263] revision 3 (ARMv5TE), cr=0000397f
+CPU VIPT aliasing data cache, unknown instruction cache
+Machine: Grain-Media GM8136 series
+Memory policy: ECC disabled, Data cache writeback
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+Kernel command line: console=ttyS0,115200 mem=128M gmmem=90M user_debug=31 root=/dev/nfs nfsroot=192.168.1.216:/opt/gm8136/target/rootfs-cpio rw init=/linuxrc ip=192.168.1.209::192.168.1.1:255.255.255.0:eth0:off
+PID hash table entries: 512 (order: -1, 2048 bytes)
+Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+Memory: 128MB = 128MB total
+Memory: 119544k/119544k available, 11528k reserved, 0K highmem
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    vmalloc : 0x88800000 - 0xff000000   (1896 MB)
+    lowmem  : 0x80000000 - 0x88000000   ( 128 MB)
+    modules : 0x7f000000 - 0x80000000   (  16 MB)
+      .text : 0x80008000 - 0x80407cc4   (4096 kB)
+      .init : 0x80408000 - 0x809e6000   (6008 kB)
+      .data : 0x809e6000 - 0x80a04c00   ( 123 kB)
+       .bss : 0x80a04c24 - 0x80a1de24   ( 101 kB)
+NR_IRQS:64
+gm_jiffies_init, system HZ: 100, pClk: 100000000 
+console [ttyS0] enabled
+Calibrating delay loop... 858.52 BogoMIPS (lpj=4292608)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+Setting up static identity map for 0x306b68 - 0x306bb0
+devtmpfs: initialized
+FMEM: 23040 pages(0x5a00000 bytes) from bank0 are reserved for Frammap. 
+FMEM: Logical memory ends up at 0x88000000, init_mm:0x80004000(0x4000), PAGE_OFFSET:0x80000000(0x0), 
+FMEM: FA726 Test and Debug Register: 0x0 
+NET: Registered protocol family 16
+PMU: Mapped at 0xfe000000 
+IC: GM8136, version: 0x1 
+iotable: VA: 0xfe000000, PA: 0x90c00000, Length: 4096 
+iotable: VA: 0xfe001000, PA: 0x90700000, Length: 4096 
+iotable: VA: 0xfe002000, PA: 0x90800000, Length: 4096 
+iotable: VA: 0xfe003000, PA: 0x90900000, Length: 4096 
+iotable: VA: 0xfe004000, PA: 0x90d00000, Length: 4096 
+iotable: VA: 0xfe005000, PA: 0x96000000, Length: 4096 
+bio: create slab <bio-0> at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Switching to clocksource fttmr010:1
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 4096 (order: 3, 32768 bytes)
+TCP bind hash table entries: 4096 (order: 2, 16384 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP reno registered
+UDP hash table entries: 256 (order: 0, 4096 bytes)
+UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Video Timer(timer3) Max 42000ms in 0xfa56ea00 HZ.
+ftdmac020 ftdmac020.0: DMA engine driver: irq 1, mapped at 0x88804000
+GM CPU frequency driver
+CPUFREQ support for gm initialized
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+JFFS2 version 2.2. (NAND) 漏 2001-2006 Red Hat, Inc.
+msgmni has been set to 233
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+gpiochip_add: registered GPIOs 0 to 31 on device: ftgpio010.0
+probe ftgpio010.0 OK, at 0x88862000
+gpiochip_add: registered GPIOs 32 to 63 on device: ftgpio010.1
+probe ftgpio010.1 OK, at 0x88864000
+Serial: 8250/16550 driver, 3 ports, IRQ sharing disabled
+serial8250: ttyS0 at I/O 0xfe001000 (irq = 21) is a 16550A
+serial8250: ttyS1 at I/O 0xfe002000 (irq = 22) is a 16550A
+serial8250: ttyS2 at I/O 0xfe003000 (irq = 25) is a 16550A
+brd: module loaded
+loop: module loaded
+Not for SPI-NAND pin mux
+SPI020 init
+SPI020 uses AHB DMA mode
+FTSPI020 enable DMA handshake 0x3
+SPI020 gets DMA channel 0
+ftspi020 ftspi020.0: Faraday FTSPI020 Controller at 0x92300000(0x88866000) irq 54.
+spi spi0.0: setup: bpw 8 mode 0
+CLK div field set 1
+ERASE SECTOR 64K
+SPI_FLASH spi0.0: w25q128bv (16384 Kbytes)
+Creating 7 MTD partitions on "nor-flash":
+0x000000010000-0x000000060000 : "UBOOT"
+0x000000060000-0x000000400000 : "LINUX"
+0x000000400000-0x000000800000 : "FS"
+0x000000800000-0x000000900000 : "MTD"
+0x000000900000-0x000000c80000 : "APP0"
+0x000000c80000-0x000001000000 : "APP1"
+0x000000000000-0x000001000000 : "ALL"
+Probe FTSPI020 SPI Controller at 0x92300000 (irq 54)
+ftgmac: Loading version 2.0 ...
+ftgmac100-0-mdio: probed
+ftgmac100-0 ftgmac100-0.0: eth0: 1 tx queue used (max: 2)
+ftgmac100-0 ftgmac100-0.0: eth0: 1 rx queue used (max: 1)
+ftgmac100-0 ftgmac100-0.0: eth0: irq 3, mapped at 88868000
+ftgmac100-0 ftgmac100-0.0: eth0: generated random MAC address 4e:69:35:55:0d:b1
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+FOTG2XX Controller Initialization
+Enter Device A
+Drive Vbus because of ID pin shows Device A
+fotg210 fotg210.0: FOTG2XX
+fotg210 fotg210.0: new USB bus registered, assigned bus number 1
+fotg210 fotg210.0: irq 9, io mem 0x93000000
+fotg210 fotg210.0: USB 2.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+i2c /dev entries driver
+ftiic010 ftiic010.0: irq 18, mapped at 8886c000
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+mmc0: SDHCI controller on ftsdc021.0 [ftsdc021.0] using ADMA
+sdhci-pltfm: SDHCI platform and OF driver helper
+TCP cubic registered
+NET: Registered protocol family 17
+Registering the dns_resolver key type
+Freeing init memory: 6008K
+usb 1-1: new high-speed USB device number 2 using fotg210
+Mounting root fs rw ...
+Mounting other filesystems ...
+Setting hostname ...
+Bringing up interfaces ...
+/bin/sh: run-parts: not found
+Mounting user's MTD partion
+Frammap: DDR0: memory base=0x1800000, memory size=0x5a00000, align_size = 4K. 
+Frammap: version 1.1.2, and the system has 1 DDR.
+Frammap: fail to open /mnt/mtd/config_8136, /tmp/template_8136 is created.
+----------------------------------------------------------------
+ddr name: frammap0 
+base: 0x1800000 
+end: 0x7200000 
+size: 0x5a00000 bytes
+memory allocated: 0x0 bytes 
+memory free: 0x5a00000 bytes 
+max available slice: 0x5a00000 bytes
+memory allocate count: 0 
+clear address: 0x1800000 
+dirty pages: 0 
+clear pages: 23040 
+size alignment: 0x1000 
+
+   Press q -> ENTER to exit boot procedure? qinsmod: can't insert '/lib/modules/frammap.ko': File exists
+----------------------------------------------------------------
+ddr name: frammap0 
+base: 0x1800000 
+end: 0x7200000 
+size: 0x5a00000 bytes
+memory allocatelog: module license 'GM' taints kernel.
+d: 0x0 bytes 
+mDisabling lock debugging due to kernel taint
+emory free: 0x5a00000 bytes 
+malog.ko: Nov 14 2014 10:59:09 (mmap 0x87d30000 size 0xc000)
+x available slic
+LOG base 0x8888a000 size 256K (start pointer 0x7f013114)
+e: 0x5a00000 bytPAGE_OFFSET(0x80000000) VMALLOC START(0x88800000) HZ(100)
+es
+memory allocate count: 0 
+clear address: 0x1800000 
+dirty pages: 0 
+clear pages: 23040 
+size alignment: 0x1000 
+ms.ko v0.8 Nov 14 2014 10:59:12
+
+em.ko v0.26 Nov 14 2014 10:58:17
+em_user v0.5 Nov 14 2014 10:58:16
+
+EM Module Service Starting (callback_period = 3ms)
+Start EM thread 2(em_callback:2) with nice -20
+Start EM thread 1(em_callback:1) with nice -20
+Start EM thread 0(em_callback:0) with nice -20
+
+Welcome to use sar_adc_drv VER:1.9
+ * module_init_func
+ * register_driver
+ * driver_probe
+ * dev_data_alloc_specific done
+ * ADDA paddr=90b00000 vaddr=8892c000 tve paddr=93500000 vaddr=8892e000
+ * set_pinmux set as 0xB8 0xFFECF278 OK
+ * register_cdev
+driver_probe done, io_vadr 0x8892A000, io_padr 0x90A00000 0x87D5A1A0
+driver_probe done,runmod:0x3,gain0 min-max(0x0-0x0)
+think2d_module_init
+** T2D VER:2.4 ** think2d_drv_probe done, vbase 0x88938000, pbase 0x92200000 0x87CDA380 (1)
+ftpwmtmr010(0x91b00000) mapping address = 0x88960000
+Register PWM character driver success!
+fe_common version 140714
+  device type: 49
+platform_init
+adda308_init_one [0] version 141003
+adda308_PMU_Select_DMIC_Input ok!
+FT3DNR200 Version 2014_1015_1048
+request IRQ42 with ft3dnr_interrupt() ok!
+ISP328 v1.40, built @ Nov 12 2014 17:26:26
+USE_DMA_CMD: TRUE
+ISP Alogrithm v1.20
+Register [0][GM_AE]
+Register [1][GM_AWB]
+Register [2][GM_AF]
+insmod: can't insert '/lib/modules/fisp_ov9715.ko': No such file or directory
+[VCAP_INFO]: VCAP300 Version: 0.3.1
+[ISP_ERR]: failed to link sensor device!
+ISP start falied!!
+insmod: can't insert '/lib/modules/vcap300_isp.ko': No such device or address
+MCP100 GM8136, built @ Nov 12 2014 17:26:58
+FAVC Encoder v0.1.107, built @ Nov 12 2014 17:27:19 (GM8136)
+H264 rate control version: 1.1.10, built @ Nov 12 2014 17:27:55
+GM8136 MJPEG, encoder v4.0.18, decoder v4.0.7, built @ Nov 12 2014 17:27:03
+osg canvas is dynammic allocate mode
+SWOSG ver 0.0.1
+SCALER version 141022, temp_width: 0, temp_height: 0 
+fscaler300_init_one [0] NCNB
+audio_init: audio driver is inserted
+Record(SSP:0): stream->dma_buffer = 820000(ffdec000), size:800, dma_ch: 1 
+Playback(SSP:0): stream->dma_buffer = 824000(ffde8000), size:800, dma_ch: 2
+gs.ko v1.5 Nov 14 2014 10:58:27
+GS driver, log: level(0) category(0) bmp width(64)
+loop_comm.ko v0.4 Nov 14 2014 10:59:10
+vpd_slave.ko v1.5 Nov 14 2014 10:58:43
+config_path="/mnt/mtd/"
+loopcomm slave init: Bus(101) getcp_bus(103) query_bs_bus(105) pack_membus(107)
+Parsing CAP vg_info version: 0.3.1
+vplib v1.8 Nov 14 2014 10:58:45
+config_init v0.12 Nov 14 2014 10:58:53 /mnt/mtd//gmlib.cfg
+-----------------------------------------------------------------------------------
+; GM8136S_1M Product Configuration
+[VERSION]
+VERSION = 0.1
+
+[GRAPH_TYPE]
+; graph type: 1(DVR with display 3DI), 2(IPCAM)
+graph_type = 2
+
+[DISPLAY_GROUP]
+; GROUP0 = lcd_vch0, lcd_vch1
+; Display group method:
+;   0(FRAME), 2(2FRAME), 3(2FRAME_2FRAME), 4(FRAME_FRAME)
+GROUP0 = 0
+METHOD0 = 0
+
+[BITRATE]
+min_compressed_ratio = 20
+max_bitrate = 8M/10240K, 3M/8192K, 2M/6144K, D1/4096K, CIF/512K
+
+[PLAYBACK]
+; CONFIG1 = resolution_keywords/channels/total_fps/ddr_channel, ...
+; default resolution keywords: 8M, 5M, 4M, 3M, 2M, 1.3M, 1M, nHD, 1080P, 720P, D1, VGA, CIF, QCIF
+
+[PLAYBACK_3DI]
+; CONFIG1 = resolution_keywords/channels/total_fps/ddr_channel, ...
+
+[ENCODE_STREAMS]
+; CONFIG1 = resolution_keywords/channels/total_fps/ddr_channel, ...
+CONFIG1 = 1M/1/30/0, VGA/1/30/0, CIF/1/30/0
+
+[ENCODE_CAPTURE]
+; CONFIG1 = resolution_keywords/channels/total_fps/ddr_channel, ...
+CONFIG1 = 1M/1/30/0, VGA/1/30/0
+
+[ENCODE_SCALER]
+; CONFIG1 = resolution keywords = channels/total_fps/ddr_channel, ...
+CONFIG1 = VGA/1/30/0, CIF/1/30/0
+
+[ENCODE_DIDN]
+; CONFIG1 = resolution_keywords/channels/total_fps/ddr_channel, ...
+CONFIG1 = 1M/1/30/0, VGA/1/30/0, CIF/1/30/0
+
+[RAW_OUT]
+; CONFIG1 = channels/total_fps/ddr_channel, ...
+
+[LDC_OUT]
+; CONFIG1 = channels/total_fps/ddr_channel, ...
+
+[AUDIO]
+; CONFIG1 = audio_keyword/channels/sample_rate/stereo/bits/ddr_vch
+CONFIG1 = au_grab/32/16K/mono/16/0, au_render/4/16K/mono/16/0
+max_frame_samples = 2048
+grab_buffer_time = 768
+render_buffer_time = 768
+
+[BUFFER_DISPLAY]
+; Display count lcd_vch/count/ddr_channel, lcd_vch/count/ddr_channel, ...
+display_count = 0/3/0
+
+; Playback 3DI input buffer count per channel
+playback_3di_input_count = 0
+
+; Playback scaler input buffer count per channel
+playback_scaler_input_count = 0
+
+[BUFFER_BITSTREAM]
+; Playback bitstream data buffer: time/ddr_vch
+datain_buffer_time = 0/0
+
+; Record bitstream data buffer: time/ddr_vch
+dataout_buffer_time = 264/0
+
+[BUFFER_CAPTURE]
+; Encode capture buffer three slop: fps/count, fps/count, fps/count
+CONFIG1 = 2M/30/4, 2M/15/3, 2M/5/2
+CONFIG2 = 1M/30/4, 1M/15/3, 1M/5/2
+CONFIG3 = VGA/30/4, VGA/15/3, VGA/5/2
+CONFIG4 = CIF/30/4, CIF/15/3, CIF/5/2
+capture_max_fps = 30
+
+[BUFFER_ENCODE_DIDN]
+; Encode substream scaler out buffer time
+encode_didn_out_buffer_count = 3
+
+[BUFFER_SUBSTREAM]
+; Encode substream scaler out buffer time
+encode_scaler_out_buffer_count = 3
+
+[BUFFER_RAW]
+raw_out_buffer_count = 0
+
+[BUFFER_LDC]
+ldc_out_buffer_count = 0
+
+[ENCODE_MOTION]
+; Enable motion data under specified resolution by "motion_resolution = D1, CIF..."
+; motion_resolution = CIF
+
+[SNAPSHOT]
+;yuv_max_width = 640
+;yuv_max_height = 480
+;max_bitstream_size = 262144
+yuv_max_width = 1280
+yuv_max_height = 720
+max_bitstream_size = 1048576
+
+
+[RESERVED_BUFFER]
+; Reserved buffer ratio for seamless switching usage, such as 4CH 720P->4CH 1080P without any stop
+; To reduce memory usage, set reserved_ratio = 0
+reserved_ratio = 10 
+
+No support encode motion data information
+-----------------------------------------------------------------------------------
+   8M  3840x2160  max_frame: 2488320  average:  43690  motion:      0
+   5M  2592x1952  max_frame: 1517875  average: 210816  motion:      0
+   4M  2304x1728  max_frame: 1194393  average: 165888  motion:      0
+   3M  2048x1536  max_frame:  943718  average:  34952  motion:      0
+1080P  1920x1088  max_frame:  626688  average:  26214  motion:      0
+ 1.3M  1280x1024  max_frame:  393216  average:  54613  motion:      0
+ 1.2M  1280x 960  max_frame:  368640  average:  51200  motion:      0
+1080I  1920x 544  max_frame:  313344  average:  43520  motion:      0
+   1M  1280x 800  max_frame:  307200  average:  42666  motion:      0
+ 720P  1280x 720  max_frame:  276480  average:  38400  motion:      0
+ 960H   960x 576  max_frame:  165888  average:  23040  motion:      0
+ SVGA   800x 608  max_frame:  145920  average:  20266  motion:      0
+ 720I  1280x 368  max_frame:  141312  average:  19626  motion:      0
+   D1   720x 576  max_frame:  124416  average:  17476  motion:      0
+  VGA   640x 480  max_frame:   92160  average:  12800  motion:      0
+  nHD   640x 368  max_frame:   70656  average:   9813  motion:      0
+ 2CIF   368x 608  max_frame:   67123  average:   9322  motion:      0
+  HD1   720x 288  max_frame:   62208  average:   8640  motion:      0
+  CIF   368x 288  max_frame:   31795  average:   2184  motion:      0
+ QCIF   176x 144  max_frame:   20480  average:   2048  motion:      0
+
+-----------------------------------------------------------------------------------
+  disp0_in DDR0 0x0, method(0)
+    (0KB x 1 + 0KB x 0)  x 3
+    ==> 6KB (ddr0)
+
+  enc_cap_out DDR0 1280x800 1CH fps(30) factor(100)
+           total_fps(30) remain(0CH/0fps/0) aver(1CH/30fps/4)
+  enc_cap_out DDR0 640x480 1CH fps(30) factor(100)
+           total_fps(30) remain(0CH/0fps/0) aver(1CH/30fps/4)
+    2000KB x 4
+    600KB x 4
+    ==> 10416KB (ddr0)
+
+  enc_out DDR0 1280x800 1CH fps(30) time(33) aver_sz(42666) max_sz(307200) count(6)
+  enc_out DDR0 640x480 1CH fps(30) time(33) aver_sz(12800) max_sz(92160) count(6)
+  enc_out DDR0 368x288 1CH fps(30) time(33) aver_sz(2184) max_sz(31795) count(6)
+    906KB x 1 (win=300KB x2 aver=41KB x6)
+    276KB x 1 (win=90KB x2 aver=12KB x6)
+    99KB x 1 (win=31KB x2 aver=2KB x6)
+    ==> 1281KB (ddr0)
+
+  enc_scl_out DDR0 640x480 1CH fps(30) decuple(30)
+  enc_scl_out DDR0 368x288 1CH fps(30) decuple(30)
+    600KB x 3
+    207KB x 3
+    ==> 2433KB (ddr0)
+
+  enc_didn_out DDR0 1280x800 1CH decuple(30)
+  enc_didn_out DDR0 640x480 1CH decuple(30)
+  enc_didn_out DDR0 368x288 1CH decuple(30)
+    2000KB x 3
+    600KB x 3
+    207KB x 3
+    ==> 8439KB (ddr0)
+
+<4>  au_grab_out DDR0 32CH 16K tracks(1) bits(16) samples(2048) latency(768) count(6)
+    256KB x 6
+    ==> 1548KB (ddr0)
+
+  au_render_in DDR0 4CH 16K tracks(1) bits(16) samples(2048) latency(768) count(6)
+    16KB x 6
+    ==> 204KB (ddr0)
+
+-----------------------------------------------------------------------------------
+  Reserved buffer ratio=10
+  DDR0 size=24327KB
+-----------------------------------------------------------------------------------
+#### Capture Count ####
+ RES/FPS  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 40 45 50 55 60
+3840x2160 0 0 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  1
+2592x1952 0 0 0 0 0 0 0 0 0  0  0  0  0  0  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2  2
+2304x1728 1 1 1 1 1 1 1 1 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2  2  2  2  2
+2048x1536 1 1 1 1 1 1 1 1 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2  2  3  3  3
+1920x1088 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+1280x1024 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+1280x 960 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+1920x 544 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+1280x 800 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+1280x 720 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 960x 576 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 800x 608 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+1280x 368 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 720x 576 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 640x 480 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 640x 368 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 368x 608 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 720x 288 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 368x 288 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+ 176x 144 2 2 2 2 2 2 2 2 2  2  2  2  2  2  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  5  5  5
+-----------------------------------------------------------------------------------
+bufferSea_ddr0     24327 KB + 843 KB(reserved)
+                   (cacheable)
+-----------------------------------------------------------------------
+   disp0_in     6 KB (DDR0)
+                  fill disp0_in pattern 0x10801080
+                  DDR0 pool free size 25165KB.
+enc_cap_out 10416 KB (DDR0)
+                  fill enc_cap_out pattern 0x10801080
+                  DDR0 pool free size 14749KB.
+ enc_bs_out  1281 KB (DDR0)
+                  DDR0 pool free size 13467KB.
+enc_scl_out  2433 KB (DDR0)
+                  DDR0 pool free size 11034KB.
+enc_3di_out  8439 KB (DDR0)
+                  DDR0 pool free size 2595KB.
+au_grab_out  1548 KB (DDR0)
+                  DDR0 pool free size 1047KB.
+au_render_in   204 KB (DDR0)
+                  DDR0 pool free size 843KB.
+datain v0.2 Nov 14 2014 10:58:52
+dataout v0.6 Nov 14 2014 10:58:56
+osd_mg_database_init......osd_type:0
+osd_mg_database_init......osd_type:1
+osd_mg_database_init......osd_type:2
+usr_decode v0.1 Nov 14 2014 10:59:03
+usr_snapshot v0.18 Nov 14 2014 10:59:03 (1280x720, 1024KB)
+usr_getraw v0.5 Nov 14 2014 10:59:04
+usr_cap_source v0.1 Nov 14 2014 10:59:04
+[err]vplib_find_max_cap_source:597 Error to find max_cap_source!
+[<8000ef98>] (unwind_backtrace+0x0/0xf4) from [<7f011b54>] (damnit+0x124/0x1f4 [log])
+[<7f011b54>] (damnit+0x124/0x1f4 [log]) from [<7f362c08>] (vplib_find_max_cap_source+0x9c/0xb8 [vpd_slave])
+[<7f362c08>] (vplib_find_max_cap_source+0x9c/0xb8 [vpd_slave]) from [<7f362fe4>] (usr_cap_source_init+0xe0/0x438 [vpd_slave])
+[<7f362fe4>] (usr_cap_source_init+0xe0/0x438 [vpd_slave]) from [<7f330a04>] (vplib_init+0x27c/0x508 [vpd_slave])
+[<7f330a04>] (vplib_init+0x27c/0x508 [vpd_slave]) from [<7f3cc3b0>] (vpslv_init+0x3b0/0x5f0 [vpd_slave])
+[<7f3cc3b0>] (vpslv_init+0x3b0/0x5f0 [vpd_slave]) from [<800083d4>] (do_one_initcall+0x30/0x178)
+[<800083d4>] (do_one_initcall+0x30/0x178) from [<800543cc>] (sys_init_module+0x84/0x198)
+[<800543cc>] (sys_init_module+0x84/0x198) from [<80009960>] (ret_fast_syscall+0x0/0x2c)
+damnit from (vplib_find_max_cap_source+0x9c/0xb8 [vpd_slave])
+
+log v0.7 (Nov 14 2014 10:59:09) log...
+[LOG] Damnit calling (ms_panic_notify+0x0/0x20 [ms])  at 0x8d82
+[LOG] Damnit calling (em_panic_notify+0x0/0x18 [em])  at 0x8d83
+[LOG] Damnit calling (ft3dnr_log_panic_handler+0x0/0x34 [ft3dnr200])  at 0x8d83
+[LOG] Damnit calling (vcap_drv_panic_handler+0x0/0xe8 [vcap300_common])  at 0x8d84
+[LOG] Damnit calling (fscaler300_log_panic_handler+0x0/0x34 [fscaler300])  at 0x8d85
+[LOG] Damnit calling (fn_panic_notify+0x0/0x60 [gs])  at 0x8d85
+GS is entering panic state! mode(0)
+[LOG] Log printout calling (ms_dumplog+0x0/0x110 [ms])  at 0x8d86
+[LOG] Log printout calling (ft3dnr_log_printout_handler+0x0/0x298 [ft3dnr200])  at 0x8d87
+[LOG] Log printout calling (vcap_drv_panic_printout_handler+0x0/0x38 [vcap300_common])  at 0x8d88
+[LOG] Log printout calling (fscaler300_log_printout_handler+0x0/0x730 [fscaler300])  at 0x8d89
+[LOG] Log printout calling (fn_printout_notify+0x0/0x64 [gs])  at 0x8d8a
+[LOG] Log printout calling (datain_panic_func+0x0/0x160 [vpd_slave])  at 0x8d8a
+[LOG] Log printout calling (dataout_panic_func+0x0/0x160 [vpd_slave])  at 0x8d8b
+[LOG]Starting 6061bytes...
+[LOG]Log Writing...
+Write Buffer 0x8888a000(0x17ad) && 0x0(0x0) to /mnt/nfs/log.txt
+
+======================
+ Write DONE!!!!!!
+======================
+[err]usr_cap_source_init:680 Error to do vplib_find_max_cap_source()!(ret=-1)
+[LOG] Log exists and skip dumplog.
+frammap(frm_get_buf_info): frm_get_buf_info, the request size 3288MB(0xcd87b000) is too large! 
+
+--------------------------------------------------------------------------
+ddr name: frammap0 
+base: 0x1800000 
+end: 0x7200000 
+size: 0x5a00000 bytes
+memory allocated: 0x20d2000 bytes 
+memory free: 0x392e000 bytes 
+max available slice: 0x392e000 bytes
+clear address: 0x38d2000 
+dirty pages: 8402 
+clean pages: 14638 
+size alignment: 0x1000 
+memory counter: 30 
+[err]usr_alloc_buf_from_frammap:157 Error to usr_alloc_buf_from_frammap() failed!
+[LOG] Log exists and skip dumplog.
+[err]usr_cap_source_init:704 Error to do usr_alloc_buf_from_frammap()!(ret=-1)
+[LOG] Log exists and skip dumplog.
+Allocate width(2134253192) x height(32) * 2, size(-846749184) from frammap for user function
+usr_osg v1.8 Nov 14 2014 10:59:05
+usr_osg: (ch_table) 4 ,-1 ,
+videograph ioctl v0.42
+vpd_master.ko v1.1 Nov 14 2014 10:58:37
+vpd_master: chipnr=0.
+loopcomm master init: pack_membus(8106)
+Slave 0:1 is ready(1).
+vpslv set vpslv_dbglevel=0
+vpd_master 22418
+5 0 - Live 0x7f3e4000 (PO)
+vpd_slave 701438 0 - Live 0x7f31f000 (PO)
+loop_comm 13888 2 vpd_master,vpd_slave, Live 0x7f317000 (PO)
+gs 201013 1 vpd_slave, Live 0x7f2d8000 (PO)
+audio_drv 319001 1 vpd_slave, Frammap: 14638 pages in DDR0 are freed. 
+Live 0x7f285000 Set EM debug level(0) (0:quiet 1:get/put 2:property 3:semaphore)
+(O)
+codec 22038
+Set GraphService debug level(0). (0 for error, 1 for flow, 2 for detail.)
+5 1 audio_drv, LSet MemoryService debug level(0).
+ive 0x7f24a000 (Set datain debug level(0)
+PO)
+osd_dispatcSet dataout debug level(0)
+h 6427 1 vpd_slavpslv set vpslv_dbglevel=0
+ve, Live 0x7f244Set VPD debug level(0).
+000 (O)
+fscalerDebug Level:0
+300 226759 1 osd_dispatch, Live 0x7f205000 (O)
+sw_osg 78212 1 vpd_slave, Live 0x7f1ee000 (O)
+fmjpeg_drv 94727 0 - Live 0x7f1d2000 (O)
+decoder 10261 1 fmjpeg_drv, Live 0x7f1cc000 (O)
+favc_rc 29523 0 - Live 0x7f1c1000 (O)
+favc_enc 374626 1 favc_rc, Live 0x7f160000 (O)
+fmcp_drv 85437 2 fmjpeg_drv,favc_enc, Live 0x7f147000 (O)
+vcap0 1566 0 - Live 0x7f13e000 (O)
+vcap300_common 295466 2 vpd_slave,osd_dispatch, Live 0x7f0ee000 (O)
+fisp_algorithm 81018 0 - Live 0x7f0d5000 (PO)
+fisp328 149402 1 fisp_algorithm, Live 0x7f0a7000 (O)
+ft3dnr200 64175 1 fisp328, Live 0x7f092000 (O)
+adda308 21175 1 audio_drv, Live 0x7f088000 (O)
+fe_common 5935 2 audio_drv,adda308, Live 0x7f083000 (O)
+ftpwmtmr010 8063 0 - Live 0x7f07e000 (O)
+think2d 14948 1 sw_osg, Live 0x7f077000 (O)
+sar_adc 13018 0 - Live 0x7f06f000 (O)
+em 155575 9 vpd_slave,gs,audio_drv,fscaler300,fmjpeg_drv,decoder,favc_enc,vcap300_common,ft3dnr200, Live 0x7f03f000 (PO)
+ms 116536 2 vpd_slave,gs, Live 0x7f01a000 (PO)
+log 18946 15 vpd_master,vpd_slave,loop_comm,gs,audio_drv,fscaler300,fmjpeg_drv,decoder,favc_rc,favc_enc,fmcp_drv,vcap300_common,ft3dnr200,em,ms, Live 0x7f010000 (PO)
+frammap 20422 14 vpd_master,vpd_slave,loop_comm,audio_drv,fscaler300,sw_osg,favc_enc,fmcp_drv,vcap300_common,fisp328,ft3dnr200,think2d,em,ms, Live 0x7f000000 (O)
+=========================================================================
+; GM8136S_1M Product Configuration
+=========================================================================
+  Video Front End: ov9715
+  Chip Version: 81360001
+  RootFS Version: 00_2014-11-14
+  MTD Version: 
+=========================================================================
+i2c i2c-0: new_device: Instantiated device ds1307 at 0x68
+insmod: can't insert '/lib/modules/dswptz.ko': No such file or directory
+insmod: can't insert '/lib/modules/dswgpio_ax.ko': No such file or directory
+insmod: can't insert '/lib/modules/dswrf_ax.ko': No such file or directory
+insmod: can't insert '/lib/modules/mt7601Usta.ko': No such file or directory
+/mnt/mtd/vg_boot.sh: line 245: /opt/bin/checksum_app: not found
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+/mnt/mtd/app_boot.sh: line 1: /opt/bin/checksum_app: not found
+boot app on mtd4
+mount: mounting /dev/mtdblock4 on /opt/app failed: No such file or directory
+  device type: 49
+/mnt/mtd/app_boot.sh: line 35: /opt/app/bin/ipcam_ax: not found
+
+
+BusyBox v1.19.4 (2013-09-04 16:29:58 CST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+/ # q
+/bin/sh: q: not found
+/ # 
+/ # ls
+00_2014-11-14  etc            linuxrc        share          usr
+bin            gm             mnt            squashfs_init  var
+boot.sh        init           proc           sys            yjx
+dev            lib            sbin           tmp
+/ # ls /mnt/mtd
+app_boot.sh                ipcam_ax.properties        workparam_ipcam.xml
+app_boot_dbg.sh            isp328_ov9715.cfg          wpa_supplicant.conf
+appinfo.xml                isp328_sc1045.cfg          wpa_supplicant.conf_sz
+cntwifi.sh                 nfs.sh                     wpa_supplicant_empty.conf
+cntwifi_dbg.sh             vg_boot.sh
+gmlib.cfg                  vg_boot_dbg.sh
+/ # cat nfs.sh
+cat: can't open 'nfs.sh': No such file or directory
+/ # cat /mnt/mtd/nfs.sh
+ifconfig eth0 192.168.1.209
+mount -o nolock 192.168.1.216:/opt/gm8136/target/rootfs-cpio  /mnt/nfs
+telnetd
+/ # cat /mnt/mtd/vg_boot.sh
+if [ -e /dev/mmcblk0p1 ]; then
+        mkdir /var/sd
+        mount -t vfat /dev/mmcblk0p1 /var/sd
+        if [ -e /var/sd/upgrade.sh ]; then
+                /var/sd/upgrade.sh
+        fi
+        umount /var/sd
+fi
+
+video_frontend=ov9715
+video_system=PAL
+
+# Support video_front_end: ov2715, ov9715, ov5653, ar0331, mt9m034, ov9714
+# Support video_front_end: imx122, imx222, imx138, imx236, ar0835, ar0330, mt9p031
+# Support video_front_end: imx238
+
+chipver=`head -1 /proc/pmu/chipver`
+chipid=`echo $chipver | cut -c 1-4`
+
+if [ "$chipid" != "8136" ] && [ "$chipid" != "8135" ]; then
+    echo "Error! Not support chip version $chipver."
+    exit
+fi
+
+if [ "$video_system" != "NTSC" ] && [ "$video_system" != "PAL" ]; then
+    echo "Invalid argument for NTSC/PAL."
+    exit
+fi
+
+if [ "$video_frontend" != "ov2715" ] && [ "$video_frontend" != "ov9715" ] &&
+   [ "$video_frontend" != "ov5653" ] && [ "$video_frontend" != "ar0331" ] &&
+   [ "$video_frontend" != "mt9m034" ] && [ "$video_frontend" != "imx122" ] &&
+   [ "$video_frontend" != "imx222" ] && [ "$video_frontend" != "imx124" ] &&
+   [ "$video_frontend" != "imx136" ] && [ "$video_frontend" != "imx138" ] &&
+   [ "$video_frontend" != "imx236" ] && [ "$video_frontend" != "imx238" ] &&
+   [ "$video_frontend" != "gc1004" ] && [ "$video_frontend" != "ov4689" ] &&
+   [ "$video_frontend" != "ar0835" ] && [ "$video_frontend" != "ar0330" ] &&
+   [ "$video_frontend" != "mt9p031" ] && [ "$video_frontend" != "ov9714" ] ; then
+     echo "Invalid argument for video frontend: $video_frontend"
+     exit
+fi
+
+if [ "$1" != "" ] ; then
+    video_frontend=$1
+fi
+
+/sbin/insmod /lib/modules/frammap.ko
+cat /proc/frammap/ddr_info
+
+/sbin/insmod /lib/modules/log.ko mode=0 log_ksize=256
+/sbin/insmod /lib/modules/ms.ko
+/sbin/insmod /lib/modules/em.ko
+#LCD与RF模块驱动冲突
+#/sbin/insmod /lib/modules/flcd200-common.ko
+#/sbin/insmod /lib/modules/flcd200-pip.ko output_type=0 fb0_fb1_share=1    # CVBS display
+/sbin/insmod /lib/modules/sar_adc.ko run_mode=0x3
+/sbin/insmod /lib/modules/think2d.ko
+/sbin/insmod /lib/modules/ftpwmtmr010.ko
+/sbin/insmod /lib/modules/fe_common.ko
+
+device_type=$(awk -vRS='<PUATYPE>|</PUATYPE>' -F\. 'NR==2{print $1}' /mnt/mtd/workparam_ipcam.xml)
+echo "  device type: $device_type"
+case "$device_type" in
+#DEV_IPCAM_AX_803
+    "51")
+                /sbin/insmod /lib/modules/adda308.ko input_mode=0 single_end=0
+        ;;
+#DEV_IPCAM_AX_403
+#DEV_IPCAM_AX_203
+#DEV_IPCAM_AX_503
+#DEV_IPCAM_AX_303
+#DEV_IPCAM_AX_603
+#DEV_IPCAM_AX_803A
+    *)
+                                /sbin/insmod /lib/modules/adda308.ko input_mode=2 enable_dmic=1 single_end=0
+        ;;
+esac
+
+/sbin/insmod /lib/modules/ft3dnr200.ko src_yc_swap=1 dst_yc_swap=1 ref_yc_swap=1
+
+case "$video_frontend" in
+    "sc1045")
+        codec_max_width=1280
+        codec_max_height=720
+        if [ "$video_system" == "NTSC" ]  ; then
+            /sbin/insmod /lib/modules/fisp328.ko cfg_path=/mnt/mtd/isp328_sc1045.cfg
+            /sbin/insmod /lib/modules/fisp_algorithm.ko pwr_freq=0            
+            /sbin/insmod /lib/modules/fisp_sc1045.ko sensor_w=1280 sensor_h=720 fps=30 mirror=1 flip=1
+        elif [ "$video_system" == "PAL" ] ; then
+            /sbin/insmod /lib/modules/fisp328.ko cfg_path=/mnt/mtd/isp328_sc1045.cfg
+            /sbin/insmod /lib/modules/fisp_algorithm.ko pwr_freq=1            
+            /sbin/insmod /lib/modules/fisp_sc1045.ko sensor_w=1280 sensor_h=720 fps=25 mirror=1 flip=1
+        fi        
+        ;;     
+    "ov9715")
+        codec_max_width=1280
+        codec_max_height=720
+        if [ "$video_system" == "NTSC" ]  ; then
+            /sbin/insmod /lib/modules/fisp328.ko cfg_path=/mnt/mtd/isp328_ov9715.cfg
+            /sbin/insmod /lib/modules/fisp_algorithm.ko pwr_freq=0            
+            /sbin/insmod /lib/modules/fisp_ov9715.ko sensor_w=1280 sensor_h=720 fps=30 mirror=1 flip=1
+        elif [ "$video_system" == "PAL" ] ; then
+            /sbin/insmod /lib/modules/fisp328.ko cfg_path=/mnt/mtd/isp328_ov9715.cfg
+            /sbin/insmod /lib/modules/fisp_algorithm.ko pwr_freq=1            
+            /sbin/insmod /lib/modules/fisp_ov9715.ko sensor_w=1280 sensor_h=720 fps=25 mirror=1 flip=1
+        fi        
+        ;;
+    *)
+        echo "Invalid argument for video frontend: $video_frontend"
+        exit
+        ;;
+esac
+
+/sbin/insmod /lib/modules/vcap300_common.ko
+/sbin/insmod /lib/modules/vcap0.ko vi_mode=0,1 ext_irq_src=1
+/sbin/insmod /lib/modules/vcap300_isp.ko ch_id=0 range=0
+/sbin/insmod /lib/modules/fmcp_drv.ko mp4_tight_buf=1
+/sbin/insmod /lib/modules/favc_enc.ko h264e_max_b_frame=0 h264e_one_ref_buf=1 h264e_tight_buf=1 h264e_max_width=$codec_max_width h264e_max_height=$codec_max_height h264e_slice_offset=1
+/sbin/insmod /lib/modules/favc_rc.ko
+/sbin/insmod /lib/modules/decoder.ko
+/sbin/insmod /lib/modules/fmjpeg_drv.ko
+#/sbin/insmod /lib/modules/fmpeg4_drv.ko mp4_max_width=$codec_max_width mp4_max_height=$codec_max_height
+#/sbin/insmod /lib/modules/mp4e_rc.ko
+
+# Encode 4CH + Cascade YUV 1CH
+/sbin/insmod /lib/modules/sw_osg.ko
+/sbin/insmod /lib/modules/fscaler300.ko max_vch_num=5 max_minors=5 temp_width=0 temp_height=0
+#/sbin/insmod /lib/modules/ftdi220.ko
+/sbin/insmod /lib/modules/osd_dispatch.ko
+/sbin/insmod /lib/modules/codec.ko
+#/sbin/insmod /lib/modules/audio_drv.ko audio_ssp_num=0,1 audio_ssp_chan=1,1 bit_clock=400000,400000 sample_rate=8000,8000 audio_out_enable=1,0
+/sbin/insmod /lib/modules/audio_drv.ko audio_ssp_num=0 audio_ssp_chan=1 bit_clock=400000 sample_rate=8000 audio_out_enable=1
+
+/sbin/insmod /lib/modules/gs.ko reserved_ch_cnt=2 alloc_unit_size=262144 flow_mode=1
+/sbin/insmod /lib/modules/loop_comm.ko
+/sbin/insmod /lib/modules/vpd_slave.ko vpslv_dbglevel=0 ddr0_sz=0 ddr1_sz=0 config_path="/mnt/mtd/" usr_func=1 usr_param=1 datain_minors=4 dataout_minors=8
+/sbin/insmod /lib/modules/vpd_master.ko vpd_dbglevel=0 gmlib_dbglevel=0
+
+echo /mnt/nfs > /proc/videograph/dumplog   #configure log path
+mdev -s
+cat /proc/modules
+echo 0 > /proc/frammap/free_pages   #should not free DDR1 for performance issue
+echo 1 > /proc/vcap300/vcap0/dbg_mode  #need debug mode to detect capture overflow
+echo 0 > /proc/videograph/em/dbglevel
+echo 0 > /proc/videograph/gs/dbglevel
+echo 0 > /proc/videograph/ms/dbglevel
+echo 0 > /proc/videograph/datain/dbglevel
+echo 0 > /proc/videograph/dataout/dbglevel
+echo 0 > /proc/videograph/vpd/dbglevel
+echo 0 > /proc/videograph/gmlib/dbglevel
+
+echo 1 1 > /proc/videograph/vcap0/group_info #setup group run mode and run version threshold
+
+echo =========================================================================
+if [ -e /mnt/mtd/gmlib.cfg ] ; then
+grep ";" /mnt/mtd/gmlib.cfg |sed -n '1,1p'
+else
+grep ";" /mnt/mtd/spec.cfg |sed -n '2,6p'
+fi
+
+rootfs_date=`ls /|grep 00_2`
+mtd_date=`ls /mnt/mtd|grep 00_2`
+echo =========================================================================
+echo "  Video Front End: $video_frontend"
+echo "  Chip Version: $chipver"
+echo "  RootFS Version: $rootfs_date"
+echo "  MTD Version: $mtd_date"
+echo =========================================================================
+
+devmem 0x9a100030 32 0x9f000009    # channel arbitration, increase vcap & CPU
+devmem 0x9a100034 32 0x08080606    # channel arbitration grant count for vcap & codec
+devmem 0x9a1000a0 32 0x87878587    # AHB read prefetch length for USB dongle
+
+#devmem 0x96105440 32 0x01500000
+#devmem 0x96105438 32 0x01500000
+#echo 1 0x50 > /proc/3dnr/dma/param
+#echo w ae_en 0 > /proc/isp320/command
+#echo w sen_exp 133 > /proc/isp320/command
+#echo w fps 15 > /proc/isp320/command
+
+# force max CPU performance
+#echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+mkdir /tmp/ipcam_ax
+ln -s /mnt/mtd/ipcam_ax.properties /tmp/ipcam_ax/ipcam_ax.properties
+ln -s /mnt/mtd/workparam_ipcam.xml /tmp/ipcam_ax/workparam_ipcam.xml
+ln -s /mnt/mtd/wpa_supplicant.conf /tmp/ipcam_ax/wpa_supplicant.conf
+
+echo ds1307 0x68 > /sys/bus/i2c/devices/i2c-0/new_device
+ptzmode=0
+ptzisex=0
+gpioisex=0
+ptzxmode=0
+ptzymode=0
+case "$device_type" in
+#DEV_IPCAM_AX_803
+    "51")
+                ptzmode=1
+                ptzisex=0
+                gpioisex=0
+                                ptzxmode=0
+                                ptzymode=0
+        ;;
+#DEV_IPCAM_AX_803A
+    "54")
+                ptzmode=1
+                ptzisex=1
+                gpioisex=1
+                                ptzxmode=0
+                                ptzymode=0
+        ;;
+#DEV_IPCAM_AX_403A
+    "55")
+                                ptzmode=1
+                                ptzisex=1
+                                gpioisex=1
+                                ptzxmode=0
+                                ptzymode=1
+        ;;
+#DEV_IPCAM_AX_403
+#DEV_IPCAM_AX_203
+#DEV_IPCAM_AX_503
+#DEV_IPCAM_AX_303
+#DEV_IPCAM_AX_603
+    *)
+        ptzmode=0
+                ptzisex=1
+                gpioisex=1
+                                ptzxmode=0
+                                ptzymode=0
+       ;;
+esac
+/sbin/insmod /lib/modules/dswptz.ko ptz_mode=$ptzmode ptz_isex=$ptzisex ptz_xmode=$ptzxmode ptz_ymode=$ptzymode
+/sbin/insmod /lib/modules/dswgpio_ax.ko gpio_isex=$gpioisex
+/sbin/insmod /lib/modules/dswrf_ax.ko
+/sbin/insmod /lib/modules/mt7601Usta.ko
+
+wifi_module=`cat /proc/net/wireless | grep "ra0"`
+if [ -n "$wifi_module" ]; then
+        /opt/bin/wpa_supplicant -Dwext -ira0 -c /mnt/mtd/wpa_supplicant_empty.conf &
+fi
+
+mdev -s
+
+/opt/bin/checksum_app settz
+
+hwclock -s
+
+telnetd
+
+if [ -e /dev/mmcblk0p1 ]; then
+        /opt/bin/dosfsck -awv /dev/mmcblk0p1
+fi
+
+/mnt/mtd/app_boot.sh/ # 
+/ # . /mnt/mtd/vg_boot.sh
+insmod: can't insert '/lib/modules/frammap.ko': File exists
+----------------------------------------------------------------
+ddr name: frammap0 
+base: 0x1800000 
+end: 0x38d2000 
+size: 0x20d2000 bytes
+memory allocated: 0x20d2000 bytes 
+memory free: 0x0 bytes 
+max available slice: 0x0 bytes
+memory allocate count: 30 
+clear address: 0x38d2000 
+dirty pages: 8402 
+clear pages: 0 
+size alignment: 0x1000 
+insmod: can't insert '/lib/modules/log.ko': File exists
+insmod: can't insert '/lib/modules/ms.ko': File exists
+insmod: can't insert '/lib/modules/em.ko': File exists
+insmod: can't insert '/lib/modules/sar_adc.ko': File exists
+insmod: can't insert '/lib/modules/think2d.ko': File exists
+insmod: can't insert '/lib/modules/ftpwmtmr010.ko': File exists
+insmod: can't insert '/lib/modules/fe_common.ko': File exists
+  device type: 49
+insmod: can't insert '/lib/modules/adda308.ko': File exists
+insmod: can't insert '/lib/modules/ft3dnr200.ko': File exists
+insmod: can't insert '/lib/modules/fisp328.ko': File exists
+insmod: can't insert '/lib/modules/fisp_algorithm.ko': File exists
+insmod: can't insert '/lib/modules/fisp_ov9715.ko': No such file or directory
+insmod: can't insert '/lib/modules/vcap300_common.ko': File exists
+insmod: can't insert '/lib/modules/vcap0.ko': File exists
+[ISP_ERR]: failed to link sensor device!
+ISP start falied!!
+insmod: can't insert '/lib/modules/vcap300_isp.ko': No such device or address
+insmod: can't insert '/lib/modules/fmcp_drv.ko': File exists
+insmod: can't insert '/lib/modules/favc_enc.ko': File exists
+insmod: can't insert '/lib/modules/favc_rc.ko': File exists
+insmod: can't insert '/lib/modules/decoder.ko': File exists
+insmod: can't insert '/lib/modules/fmjpeg_drv.ko': File exists
+insmod: can't insert '/lib/modules/sw_osg.ko': File exists
+insmod: can't insert '/lib/modules/fscaler300.ko': File exists
+insmod: can't insert '/lib/modules/osd_dispatch.ko': File exists
+insmod: can't insert '/lib/modules/codec.ko': File exists
+insmod: can't insert '/lib/modules/audio_drv.ko': File exists
+insmod: can't insert '/lib/modules/gs.ko': File exists
+insmod: can't insert '/lib/modules/loop_comm.ko': File exists
+insmod: can't insert '/lib/modules/vpd_slave.ko': File exists
+insmod: can't insert '/lib/modules/vpd_master.ko': File exists
+vpd_master 22418
+5 0 - Live 0x7f3Set EM debug level(0) (0:quiet 1:get/put 2:property 3:semaphore)
+e4000 (PO)
+vpd_
+Set GraphService debug level(0). (0 for error, 1 for flow, 2 for detail.)
+slave 701438 0 -Set MemoryService debug level(0).
+ Live 0x7f31f000Set datain debug level(0)
+ (PO)
+loop_commSet dataout debug level(0)
+ 13888 2 vpd_masvpslv set vpslv_dbglevel=0
+ter,vpd_slave, LSet VPD debug level(0).
+ive 0x7f317000 (Debug Level:0
+PO)
+gs 201013 1 vpd_slave, Live 0x7f2d8000 (PO)
+audio_drv 319001 1 vpd_slave, Live 0x7f285000 (O)
+codec 220385 1 audio_drv, Live 0x7f24a000 (PO)
+osd_dispatch 6427 1 vpd_slave, Live 0x7f244000 (O)
+fscaler300 226759 1 osd_dispatch, Live 0x7f205000 (O)
+sw_osg 78212 1 vpd_slave, Live 0x7f1ee000 (O)
+fmjpeg_drv 94727 0 - Live 0x7f1d2000 (O)
+decoder 10261 1 fmjpeg_drv, Live 0x7f1cc000 (O)
+favc_rc 29523 0 - Live 0x7f1c1000 (O)
+favc_enc 374626 1 favc_rc, Live 0x7f160000 (O)
+fmcp_drv 85437 2 fmjpeg_drv,favc_enc, Live 0x7f147000 (O)
+vcap0 1566 0 - Live 0x7f13e000 (O)
+vcap300_common 295466 2 vpd_slave,osd_dispatch, Live 0x7f0ee000 (O)
+fisp_algorithm 81018 0 - Live 0x7f0d5000 (PO)
+fisp328 149402 1 fisp_algorithm, Live 0x7f0a7000 (O)
+ft3dnr200 64175 1 fisp328, Live 0x7f092000 (O)
+adda308 21175 1 audio_drv, Live 0x7f088000 (O)
+fe_common 5935 2 audio_drv,adda308, Live 0x7f083000 (O)
+ftpwmtmr010 8063 0 - Live 0x7f07e000 (O)
+think2d 14948 1 sw_osg, Live 0x7f077000 (O)
+sar_adc 13018 0 - Live 0x7f06f000 (O)
+em 155575 9 vpd_slave,gs,audio_drv,fscaler300,fmjpeg_drv,decoder,favc_enc,vcap300_common,ft3dnr200, Live 0x7f03f000 (PO)
+ms 116536 2 vpd_slave,gs, Live 0x7f01a000 (PO)
+log 18946 15 vpd_master,vpd_slave,loop_comm,gs,audio_drv,fscaler300,fmjpeg_drv,decoder,favc_rc,favc_enc,fmcp_drv,vcap300_common,ft3dnr200,em,ms, Live 0x7f010000 (PO)
+frammap 20422 14 vpd_master,vpd_slave,loop_comm,audio_drv,fscaler300,sw_osg,favc_enc,fmcp_drv,vcap300_common,fisp328,ft3dnr200,think2d,em,ms, Live 0x7f000000 (O)
+=========================================================================
+; GM8136S_1M Product Configuration
+=========================================================================
+  Video Front End: ov9715
+  Chip Version: 81360001
+  RootFS Version: 00_2014-11-14
+  MTD Version: 
+=========================================================================
+mkdir: can't create directory '/tmp/ipcam_ax': File exists
+ln: /tmp/ipcam_ax/ipcam_ax.properties: File exists
+ln: /tmp/ipcam_ax/workparam_ipcam.xml: File exists
+ln: /tmp/ipcam_ai2c i2c-0: Failed to register i2c client ds1307 at 0x68 (-16)
+x/wpa_supplicant.conf: File exists
+sh: write error: Invalid argument
+insmod: can't insert '/lib/modules/dswptz.ko': No such file or directory
+insmod: can't insert '/lib/modules/dswgpio_ax.ko': No such file or directory
+insmod: can't insert '/lib/modules/dswrf_ax.ko': No such file or directory
+insmod: can't insert '/lib/modules/mt7601Usta.ko': No such file or directory
+/bin/sh: /mnt/mtd/vg_boot.sh: /opt/bin/checksum_app: not found
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+/mnt/mtd/app_boot.sh: line 1: /opt/bin/checksum_app: not found
+boot app on mtd4
+mount: mounting /dev/mtdblock4 on /opt/app failed: No such file or directory
+ln: /tmp/ipcam_ax/html: File exists
+  device type: 49
+/mnt/mtd/app_boot.sh: line 35: /opt/app/bin/ipcam_ax: not found
+/ # ls
+00_2014-11-14  etc            linuxrc        share          usr
+bin            gm             mnt            squashfs_init  var
+boot.sh        init           proc           sys            yjx
+dev            lib            sbin           tmp

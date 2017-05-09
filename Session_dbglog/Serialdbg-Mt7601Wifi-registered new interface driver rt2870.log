@@ -1,0 +1,283 @@
+﻿鴡f榾樴榵x槝榵鴨声mode 3
+SPI NOR ID code:0xef 0x40 0x18
+SPI jump setting is 3 bytes mode
+Boot image offset: 0x10000. size: 0x50000. Booting Image .....
+
+
+U-Boot 2013.01 (Apr 28 2015 - 11:41:15)
+
+I2C:   ready
+DRAM:  128 MiB
+ROM CODE has enable I cache
+SPI mode
+SF: Got idcodes
+00000000: ef 40 18 00    .@..
+SF: Detected W25Q128 with page size 64 KiB, total 16 MiB
+flash is 3byte mode
+In:    serial
+Out:   serial
+Err:   serial
+
+-------------------------------
+ID: 8136150
+AC: 200  HC: 200  P1: 860  P2: 600  P3: 540
+C6: 860  DR:1146
+J: 286   H1: 286
+-------------------------------
+Net:   GMAC set RMII mode
+reset PHY
+eth0
+Warning: eth0 MAC addresses don't match:
+Address in SROM is         88:81:fa:07:88:81
+Address in environment is  00:42:70:00:30:23
+
+Hit any key to stop autoboot:  0 
+GM # 
+GM # 
+GM # 
+GM # 
+GM # 
+GM # 
+GM # print
+auimg0=u-boot_spi.bin
+auimg1=uImage_8136
+auimg2=rootfs-cpio_8136.squashfs.img
+auimg3=mtd.img
+auimgaio=flash.img
+autoupdate=no
+baudrate=115200
+bootargs=console=ttyS0,115200 root=/dev/mtdblock2 rootfstype=squashfs init=/squashfs_init mem=128M gmmem=90M user_debug=31
+bootcmd=sf probe 0:0;run lm;bootm 0x2000000
+bootdelay=7
+bootfile=mbootpImage
+cmd1=mem=64M gmmem=30M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd2=mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd3=mem=256M gmmem=190M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd4=mem=512M gmmem=432M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+ethact=eth0
+ethaddr=00:42:70:00:30:23
+gatewayip=192.168.1.1
+ipaddr=192.168.1.209
+lm=sf read 0x02000000 z
+loadaddr=0x02000000
+netdev=eth0
+netmask=255.255.255.0
+nfsserver=192.168.1.216
+rootpath=/opt/gm8136/target/rootfs-cpio
+serverip=192.168.1.216
+stderr=serial
+stdin=serial
+stdout=serial
+tftpboot=root=/dev/nfs nfsroot=${nfsserver}:${rootpath} ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:${netdev} mac=${ethaddr} console=ttyS0,${baudrate} init=/linuxrc mem=${mem} gmmem=90M ;tftp ${loadaddr} ${bootfile};go ${loadaddr}
+
+Environment size: 1415/65532 bytes
+GM # 
+GM # 
+GM # 
+GM # 
+GM # run tftpboot 
+Unknown command 'root=/dev/nfs' - try 'help'
+RMII mode
+Phy ID = 0xc54
+FULL
+PHY_SPEED_100M
+Using eth0 device
+TFTP from server 192.168.1.216; our IP address is 192.168.1.209
+Filename 'mbootpImage'.
+Load address: 0x2000000
+Loading: #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         ####################
+         1.5 MiB/s
+done
+Bytes transferred = 6004704 (5b9fe0 hex)
+## Starting application at 0x02000000 ...
+Uncompressing Linux... done, booting the kernel.
+Booting Linux on physical CPU 0
+Linux version 3.3.0 (yelsin@ubuntu16) (gcc version 4.4.0 20100318 (experimental) (Buildroot 2012.02) ) #270 PREEMPT Thu May 4 15:09:32 CST 2017
+CPU: FA6 [66056263] revision 3 (ARMv5TE), cr=0000397f
+CPU VIPT aliasing data cache, unknown instruction cache
+Machine: Grain-Media GM8136 series
+Memory policy: ECC disabled, Data cache writeback
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+Kernel command line: console=ttyS0,115200 mem=128M gmmem=90M user_debug=31 root=/dev/nfs nfsroot=192.168.1.216:/opt/gm8136/target/rootfs-cpio rw init=/linuxrc ip=192.168.1.209::192.168.1.1:255.255.255.0:eth0:off
+PID hash table entries: 512 (order: -1, 2048 bytes)
+Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+Memory: 128MB = 128MB total
+Memory: 117044k/117044k available, 14028k reserved, 0K highmem
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    vmalloc : 0x88800000 - 0xff000000   (1896 MB)
+    lowmem  : 0x80000000 - 0x88000000   ( 128 MB)
+    modules : 0x7f000000 - 0x80000000   (  16 MB)
+      .text : 0x80008000 - 0x80450344   (4385 kB)
+      .init : 0x80451000 - 0x80c58000   (8220 kB)
+      .data : 0x80c58000 - 0x80c74ca0   ( 116 kB)
+       .bss : 0x80c74cc4 - 0x80c8e290   ( 102 kB)
+NR_IRQS:64
+gm_jiffies_init, system HZ: 100, pClk: 100000000 
+console [ttyS0] enabled
+Calibrating delay loop... 858.52 BogoMIPS (lpj=4292608)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+Setting up static identity map for 0x3432b8 - 0x343300
+devtmpfs: initialized
+FMEM: 23040 pages(0x5a00000 bytes) from bank0 are reserved for Frammap. 
+FMEM: Logical memory ends up at 0x88000000, init_mm:0x80004000(0x4000), PAGE_OFFSET:0x80000000(0x0), 
+FMEM: FA726 Test and Debug Register: 0x0 
+NET: Registered protocol family 16
+PMU: Mapped at 0xfe000000 
+IC: GM8136, version: 0x1 
+iotable: VA: 0xfe000000, PA: 0x90c00000, Length: 4096 
+iotable: VA: 0xfe001000, PA: 0x90700000, Length: 4096 
+iotable: VA: 0xfe002000, PA: 0x90800000, Length: 4096 
+iotable: VA: 0xfe003000, PA: 0x90900000, Length: 4096 
+iotable: VA: 0xfe004000, PA: 0x90d00000, Length: 4096 
+iotable: VA: 0xfe005000, PA: 0x96000000, Length: 4096 
+bio: create slab <bio-0> at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+cfg80211: Calling CRDA to update world regulatory domain
+Switching to clocksource fttmr010:1
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 4096 (order: 3, 32768 bytes)
+TCP bind hash table entries: 4096 (order: 2, 16384 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP reno registered
+UDP hash table entries: 256 (order: 0, 4096 bytes)
+UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Video Timer(timer3) Max 42000ms in 0xfa56ea00 HZ.
+ftdmac020 ftdmac020.0: DMA engine driver: irq 1, mapped at 0x88804000
+GM CPU frequency driver
+CPUFREQ support for gm initialized
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+JFFS2 version 2.2. (NAND) 漏 2001-2006 Red Hat, Inc.
+msgmni has been set to 228
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+gpiochip_add: registered GPIOs 0 to 31 on device: ftgpio010.0
+probe ftgpio010.0 OK, at 0x88862000
+gpiochip_add: registered GPIOs 32 to 63 on device: ftgpio010.1
+probe ftgpio010.1 OK, at 0x88864000
+Serial: 8250/16550 driver, 3 ports, IRQ sharing disabled
+serial8250: ttyS0 at I/O 0xfe001000 (irq = 21) is a 16550A
+serial8250: ttyS1 at I/O 0xfe002000 (irq = 22) is a 16550A
+serial8250: ttyS2 at I/O 0xfe003000 (irq = 25) is a 16550A
+brd: module loaded
+loop: module loaded
+Not for SPI-NAND pin mux
+ftssp010_spi probe...
+bus num = 1, chip select = 4
+Setup device fb_st7789v, chip select 0, mode = 0xb, speed = 6000000
+Probe FTSSP010 SPI Controller at 0x91400000 (irq 11)
+SPI020 init
+SPI020 uses AHB DMA mode
+FTSPI020 enable DMA handshake 0x3
+SPI020 gets DMA channel 0
+ftspi020 ftspi020.0: Faraday FTSPI020 Controller at 0x92300000(0x88868000) irq 54.
+spi spi0.0: setup: bpw 8 mode 0
+CLK div field set 1
+ERASE SECTOR 64K
+SPI_FLASH spi0.0: w25q128bv (16384 Kbytes)
+Creating 7 MTD partitions on "nor-flash":
+0x000000010000-0x000000060000 : "UBOOT"
+0x000000060000-0x000000400000 : "LINUX"
+0x000000400000-0x000000800000 : "FS"
+0x000000800000-0x000000900000 : "MTD"
+0x000000900000-0x000000c80000 : "APP0"
+0x000000c80000-0x000001000000 : "APP1"
+0x000000000000-0x000001000000 : "ALL"
+Probe FTSPI020 SPI Controller at 0x92300000 (irq 54)
+ftgmac: Loading version 2.0 ...
+ftgmac100-0-mdio: probed
+ftgmac100-0 ftgmac100-0.0: eth0: 1 tx queue used (max: 2)
+ftgmac100-0 ftgmac100-0.0: eth0: 1 rx queue used (max: 1)
+ftgmac100-0 ftgmac100-0.0: eth0: irq 3, mapped at 8886a000
+ftgmac100-0 ftgmac100-0.0: eth0: generated random MAC address 72:62:6f:79:8a:b1
+PPP generic driver version 2.4.2
+NET: Registered protocol family 24
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+FOTG2XX Controller Initialization
+Enter Device A
+Drive Vbus because of ID pin shows Device A
+Note : SET lower timing on FPGA, will get low performance
+Timing on misc(0x8886c040) = 0xd
+fotg210 fotg210.0: FOTG2XX
+fotg210 fotg210.0: new USB bus registered, assigned bus number 1
+fotg210 fotg210.0: irq 9, io mem 0x93000000
+fotg210 fotg210.0: USB 2.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+i2c /dev entries driver
+ftiic010 ftiic010.0: irq 18, mapped at 8886e000
+TCP cubic registered
+NET: Registered protocol family 17
+Registering the dns_resolver key type
+Enter pattern test mode
+Warning: unable to open an initial console.
+Freeing init memory: 8220K
+Frammap: DDR0: memory base=0x1800000, memory size=0x5a00000, align_size = 4K. 
+Frammap: version 1.1.2, and the system has 1 DDR.
+Frammap: fail to open /mnt/mtd/config_8136, /tmp/template_8136 is created.
+
+
+BusyBox v1.19.4 (2013-09-04 16:29:58 CST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+/ # 
+/ # ls
+00_2014-11-14     etc               linuxrc           squashfs_init
+bin               fb_st7789v.ko     mnt               sys
+boot.sh           fbtft_device.ko   mt7601Usta.ko     tmp
+dev               gm                proc              usr
+dsw               init              sbin              var
+dswgpio_4hdem.ko  lib               share
+/ # 
+/ # insmod dswgpio_4hdem.ko 
+
+FTGPIO Functions Driver registered success
+/ # 
+/ # 
+/ # 
+/ # insmod mt7601Usta.ko 
+rtusb init rt2870 --->
+usbcore: registered new interface driver rt2870
+/ # 
+/ # lsusb
+Bus 001 Device 001: ID 1d6b:0002
+/ # 
+/ # ifconfig
+/ # ifconfig wlan0 up
+ifconfig: SIOCGIFFLAGS: No such device
+/ # 
+/ # ifconfig eth0 192.168.1.215
+HW reset
+/ # ifconfig eth0 192.168.1.215phy speed is 10, half duplex
+HW reset
+phy speed is 100, full duplex
+HW reset
+/ # ifconfig
+eth0      Link encap:Ethernet  HWaddr 72:62:6F:79:8A:B1  
+          inet addr:192.168.1.215  Bcast:192.168.1.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:23 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2083 (2.0 KiB)  TX bytes:0 (0.0 B)
+

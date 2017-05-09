@@ -1,0 +1,315 @@
+鴡f榾樴榵x槝榵鴨声mode 3
+SPI NOR ID code:0xef 0x40 0x18
+SPI jump setting is 3 bytes mode
+Boot image offset: 0x10000. size: 0x50000. Booting Image .....
+
+
+U-Boot 2013.01 (Apr 28 2015 - 11:41:15)
+
+I2C:   ready
+DRAM:  128 MiB
+ROM CODE has enable I cache
+SPI mode
+SF: Got idcodes
+00000000: ef 40 18 00    .@..
+SF: Detected W25Q128 with page size 64 KiB, total 16 MiB
+flash is 3byte mode
+In:    serial
+Out:   serial
+Err:   serial
+
+-------------------------------
+ID: 8136150
+AC: 200  HC: 200  P1: 860  P2: 600  P3: 540
+C6: 860  DR:1146
+J: 286   H1: 286
+-------------------------------
+Net:   GMAC set RMII mode
+reset PHY
+eth0
+Warning: eth0 MAC addresses don't match:
+Address in SROM is         6f:63:6b:32:20:72
+Address in environment is  30:20:75:73:65:72
+
+Hit any key to stop autoboot:  0 
+GM # 
+GM # print
+auimg0=u-boot_spi.bin
+auimg1=uImage_8136
+auimg2=rootfs-cpio_8136.squashfs.img
+auimg3=mtd.img
+auimgaio=flash.img
+autoupdate=no
+baudrate=115200
+bootargs=mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+bootcmd=sf probe 0:0;run lm;bootm 0x2000000
+bootdelay=3
+cmd1=mem=64M gmmem=30M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd2=mem=128M gmmem=90M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd3=mem=256M gmmem=190M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+cmd4=mem=512M gmmem=432M console=ttyS0,115200 user_debug=31 init=/squashfs_init root=/dev/mtdblock2 rootfstype=squashfs
+ethact=eth0
+ethaddr=30:20:75:73:65:72
+gatewayip=192.168.1.163
+ipaddr=192.168.1.209
+lm=sf read 0x02000000 z
+netmask=255.255.255.0
+nfsserver=192.168.1.216
+rootpath=/opt/gm8136/target/rootfs-cpio
+serverip=192.168.1.216
+stderr=serial
+stdin=serial
+stdout=serial
+
+Environment size: 1108/65532 bytes
+GM # 
+GM #  tftp 0x2000000 mbootpImage
+RMII mode
+Phy ID = 0xc54
+FULL
+PHY_SPEED_100M
+Using eth0 device
+TFTP from server 192.168.1.216; our IP address is 192.168.1.209
+Filename 'mbootpImage'.
+Load address: 0x2000000
+Loading: #################################################################
+         #################################################################
+         #################################################################
+         #######################
+         1.5 MiB/s
+done
+Bytes transferred = 3197984 (30cc20 hex)
+GM # go 0x2000000
+## Starting application at 0x02000000 ...
+Uncompressing Linux... done, booting the kernel.
+Booting Linux on physical CPU 0
+Linux version 3.3.0 (yelsin@ubuntu16) (gcc version 4.4.0 20100318 (experimental) (Buildroot 2012.02) ) #45 PREEMPT Mon Mar 13 12:10:00 CST 2017
+CPU: FA6 [66056263] revision 3 (ARMv5TE), cr=0000397f
+CPU VIPT aliasing data cache, unknown instruction cache
+Machine: Grain-Media GM8136 series
+Memory policy: ECC disabled, Data cache writeback
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 65024
+Kernel command line: console=ttyS0,115200 mem=256M gmmem=190M user_debug=31 init=/squashfs_init root=/dev/mtdblock4 rootfstype=squashfs
+PID hash table entries: 1024 (order: 0, 4096 bytes)
+Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
+Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
+Memory: 256MB = 256MB total
+Memory: 253532k/253532k available, 8612k reserved, 0K highmem
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    vmalloc : 0x90800000 - 0xff000000   (1768 MB)
+    lowmem  : 0x80000000 - 0x90000000   ( 256 MB)
+    modules : 0x7f000000 - 0x80000000   (  16 MB)
+      .text : 0x80008000 - 0x803db920   (3919 kB)
+      .init : 0x803dc000 - 0x805f5000   (2148 kB)
+      .data : 0x805f6000 - 0x80614060   ( 121 kB)
+       .bss : 0x80614084 - 0x8062bfdc   (  96 kB)
+NR_IRQS:64
+gm_jiffies_init, system HZ: 100, pClk: 100000000 
+console [ttyS0] enabled
+Calibrating delay loop... 858.52 BogoMIPS (lpj=4292608)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+Setting up static identity map for 0x2e2860 - 0x2e28a8
+devtmpfs: initialized
+FMEM: 48640 pages(0xbe00000 bytes) from bank0 are reserved for Frammap. 
+FMEM: Logical memory ends up at 0x90000000, init_mm:0x80004000(0x4000), PAGE_OFFSET:0x80000000(0x0), 
+FMEM: FA726 Test and Debug Register: 0x0 
+NET: Registered protocol family 16
+PMU: Mapped at 0xfe000000 
+IC: GM8136, version: 0x1 
+iotable: VA: 0xfe000000, PA: 0x90c00000, Length: 4096 
+iotable: VA: 0xfe001000, PA: 0x90700000, Length: 4096 
+iotable: VA: 0xfe002000, PA: 0x90800000, Length: 4096 
+iotable: VA: 0xfe003000, PA: 0x90900000, Length: 4096 
+iotable: VA: 0xfe004000, PA: 0x90d00000, Length: 4096 
+iotable: VA: 0xfe005000, PA: 0x96000000, Length: 4096 
+bio: create slab <bio-0> at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Switching to clocksource fttmr010:1
+NET: Registered protocol family 2
+IP route cache hash table entries: 2048 (order: 1, 8192 bytes)
+TCP established hash table entries: 8192 (order: 4, 65536 bytes)
+TCP bind hash table entries: 8192 (order: 3, 32768 bytes)
+TCP: Hash tables configured (established 8192 bind 8192)
+TCP reno registered
+UDP hash table entries: 256 (order: 0, 4096 bytes)
+UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Video Timer(timer3) Max 42000ms in 0xfa56ea00 HZ.
+ftdmac020 ftdmac020.0: DMA engine driver: irq 1, mapped at 0x90804000
+GM CPU frequency driver
+CPUFREQ support for gm initialized
+squashfs: version 4.0 (2009/01/31) Phillip Lougher
+JFFS2 version 2.2. (NAND) 漏 2001-2006 Red Hat, Inc.
+msgmni has been set to 495
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+gpiochip_add: registered GPIOs 0 to 31 on device: ftgpio010.0
+probe ftgpio010.0 OK, at 0x90862000
+gpiochip_add: registered GPIOs 32 to 63 on device: ftgpio010.1
+probe ftgpio010.1 OK, at 0x90864000
+Serial: 8250/16550 driver, 3 ports, IRQ sharing disabled
+serial8250: ttyS0 at I/O 0xfe001000 (irq = 21) is a 16550A
+serial8250: ttyS1 at I/O 0xfe002000 (irq = 22) is a 16550A
+serial8250: ttyS2 at I/O 0xfe003000 (irq = 25) is a 16550A
+brd: module loaded
+loop: module loaded
+Not for SPI-NAND pin mux
+SPI020 init
+SPI020 uses AHB DMA mode
+FTSPI020 enable DMA handshake 0x3
+SPI020 gets DMA channel 0
+ftspi020 ftspi020.0: Faraday FTSPI020 Controller at 0x92300000(0x90866000) irq 54.
+spi spi0.0: setup: bpw 8 mode 0
+CLK div field set 1
+ERASE SECTOR 64K
+SPI_FLASH spi0.0: w25q128bv (16384 Kbytes)
+Creating 7 MTD partitions on "nor-flash":
+0x000000010000-0x000000060000 : "UBOOT"
+0x000000060000-0x000000400000 : "LINUX"
+0x000000400000-0x000000800000 : "FS"
+0x000000800000-0x000000900000 : "MTD"
+0x000000900000-0x000000c80000 : "APP0"
+0x000000c80000-0x000001000000 : "APP1"
+0x000000000000-0x000001000000 : "ALL"
+Probe FTSPI020 SPI Controller at 0x92300000 (irq 54)
+ftgmac: Loading version 2.0 ...
+ftgmac100-0-mdio: probed
+ftgmac100-0 ftgmac100-0.0: eth0: 1 tx queue used (max: 2)
+ftgmac100-0 ftgmac100-0.0: eth0: 1 rx queue used (max: 1)
+ftgmac100-0 ftgmac100-0.0: eth0: irq 3, mapped at 90868000
+ftgmac100-0 ftgmac100-0.0: eth0: generated random MAC address ee:77:7e:3f:ba:bc
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+FOTG2XX Controller Initialization
+Enter Device A
+Drive Vbus because of ID pin shows Device A
+fotg210 fotg210.0: FOTG2XX
+fotg210 fotg210.0: new USB bus registered, assigned bus number 1
+fotg210 fotg210.0: irq 9, io mem 0x93000000
+fotg210 fotg210.0: USB 2.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+i2c /dev entries driver
+ftiic010 ftiic010.0: irq 18, mapped at 9086c000
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+mmc0: SDHCI controller on ftsdc021.0 [ftsdc021.0] using ADMA
+sdhci-pltfm: SDHCI platform and OF driver helper
+TCP cubic registered
+NET: Registered protocol family 17
+Freeing init memory: 2148K
+usb 1-1: new high-speed USB device number 2 using fotg210
+Mounting root fs rw ...
+Mounting other filesystems ...
+Setting hostname ...
+Bringing up interfaces ...
+/bin/sh: run-parts: not found
+Mounting user's MTD partion
+insmod: can't insert '/lib/modules/frammap.ko': No such file or directory
+cat: can't open '/proc/frammap/ddr_info': No such file or directory
+cpu_enum=, pci_epcnt=
+insmod: can't insert '/lib/modules/cpu_comm_fa626.ko': No such file or directory
+insmod: can't insert '/lib/modules/frammap.ko': No such file or directory
+cat: can't open '/proc/frammap/ddr_info': No such file or directory
+insmod: can't insert '/lib/modules/log.ko': No such file or directory
+insmod: can't insert '/lib/modules/ms.ko': No such file or directory
+insmod: can't insert '/lib/modules/em.ko': No such file or directory
+insmod: can't insert '/lib/modules/sar_adc.ko': No such file or directory
+insmod: can't insert '/lib/modules/think2d.ko': No such file or directory
+insmod: can't insert '/lib/modules/ftpwmtmr010.ko': No such file or directory
+insmod: can't insert '/lib/modules/fe_common.ko': No such file or directory
+  device type: 49
+insmod: can't insert '/lib/modules/adda308.ko': No such file or directory
+insmod: can't insert '/lib/modules/ft3dnr200.ko': No such file or directory
+insmod: can't insert '/lib/modules/fisp328.ko': No such file or directory
+insmod: can't insert '/lib/modules/fisp_algorithm.ko': No such file or directory
+insmod: can't insert '/lib/modules/fisp_ov9715.ko': No such file or directory
+insmod: can't insert '/lib/modules/vcap300_common.ko': No such file or directory
+insmod: can't insert '/lib/modules/vcap0.ko': No such file or directory
+insmod: can't insert '/lib/modules/vcap300_isp.ko': No such file or directory
+insmod: can't insert '/lib/modules/fmcp_drv.ko': No such file or directory
+insmod: can't insert '/lib/modules/favc_enc.ko': No such file or directory
+insmod: can't insert '/lib/modules/favc_rc.ko': No such file or directory
+insmod: can't insert '/lib/modules/decoder.ko': No such file or directory
+insmod: can't insert '/lib/modules/fmjpeg_drv.ko': No such file or directory
+insmod: can't insert '/lib/modules/sw_osg.ko': No such file or directory
+insmod: can't insert '/lib/modules/fscaler300.ko': No such file or directory
+insmod: can't insert '/lib/modules/osd_dispatch.ko': No such file or directory
+insmod: can't insert '/lib/modules/codec.ko': No such file or directory
+insmod: can't insert '/lib/modules/audio_drv.ko': No such file or directory
+insmod: can't insert '/lib/modules/gs.ko': No such file or directory
+insmod: can't insert '/lib/modules/loop_comm.ko': No such file or directory
+insmod: can't insert '/lib/modules/vpd_slave.ko': No such file or directory
+insmod: can't insert '/lib/modules/vpd_master.ko': No such file or directory
+/mnt/mtd/vg_boot.sh: line 139: can't create /proc/videograph/dumplog: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 142: can't create /proc/frammap/free_pages: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 143: can't create /proc/vcap300/vcap0/dbg_mode: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 144: can't create /proc/videograph/em/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 145: can't create /proc/videograph/gs/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 146: can't create /proc/videograph/ms/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 147: can't create /proc/videograph/datain/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 148: can't create /proc/videograph/dataout/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 149: can't create /proc/videograph/vpd/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 150: can't create /proc/videograph/gmlib/dbglevel: nonexistent directory
+/mnt/mtd/vg_boot.sh: line 152: can't create /proc/videograph/vcap0/group_info: nonexistent directory
+=========================================================================
+; GM8136S_1M Product Configuration
+=========================================================================
+  Video Front End: ov9715
+  Chip Version: 81360001
+  RootFS Version: 
+  MTD Version: 
+=========================================================================
+i2c i2c-0: new_device: Instantiated device ds1307 at 0x68
+insmod: can't insert '/lib/modules/dswptz.ko': No such file or directory
+insmod: can't insert '/lib/modules/dswgpio_ax.ko': No such file or directory
+insmod: can't insert '/lib/modules/dswrf_ax.ko': No such file or directory
+insmod: can't insert '/lib/modules/mt7601Usta.ko': No such file or directory
+/mnt/mtd/vg_boot.sh: line 245: /opt/bin/checksum_app: not found
+hwclock: can't open '/dev/misc/rtc': No such file or directory
+/mnt/mtd/app_boot.sh: line 1: /opt/bin/checksum_app: not found
+boot app on mtd4
+mount: mounting /dev/mtdblock4 on /opt/app failed: No such file or directory
+  device type: 49
+/mnt/mtd/app_boot.sh: line 35: /opt/app/bin/ipcam_ax: not found
+
+
+BusyBox v1.19.4 (2013-09-04 16:29:58 CST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+/ # 
+/ # ls
+bin            gm             mnt            squashfs_init  var
+boot.sh        init           proc           sys
+dev            lib            sbin           tmp
+etc            linuxrc        share          usr
+/ # cd dev
+/dev # ;s
+/bin/sh: syntax error: unexpected ";"
+/dev # ls
+console       loop5         mtd4          mtdblock6     ram2          ttyS1
+device        loop6         mtd4ro        null          ram3          ttyS2
+full          loop7         mtd5          ptmx          ram4          urandom
+i2c-0         mem           mtd5ro        pts           ram5          usbdev1.1
+kmem          mtd0          mtd6          ram0          ram6          usbdev1.2
+kmsg          mtd0ro        mtd6ro        ram1          ram7          watchdog
+loop-control  mtd1          mtdblock0     ram10         ram8          zero
+loop0         mtd1ro        mtdblock1     ram11         ram9
+loop1         mtd2          mtdblock2     ram12         random
+loop2         mtd2ro        mtdblock3     ram13         shm
+loop3         mtd3          mtdblock4     ram14         tty
+loop4         mtd3ro        mtdblock5     ram15         ttyS0
